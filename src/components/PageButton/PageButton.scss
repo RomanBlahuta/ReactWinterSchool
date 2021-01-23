@@ -1,0 +1,24 @@
+.PageButton {
+    &__inactive {
+      width: 32px;
+      height: 32px;
+      background: #2A2A42;
+      border-radius: 8px;
+      color: white;
+      margin: 0 8px;
+      font-weight: bold;
+      line-height: 32px;
+    }
+
+    &__active {
+      width: 32px;
+      height: 32px;
+      color: #2A2A42;
+      border-radius: 8px;
+      background: white;
+      margin: 0 8px;
+      font-weight: bold;
+      line-height: 32px;
+    }
+
+}

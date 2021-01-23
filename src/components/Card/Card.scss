@@ -1,13 +1,13 @@
 .Card {
-  width: 282px;
-  height: 502px;
+  width: 300px;
+  height: 532px;
   border-radius: 12px;
   background-color: #2A2A42;
-  margin: 12px;
+  margin: 16px;
 
   &__content {
     text-align: left;
-    padding: 24px 16px;
+    padding: 14px 16px;
   }
 
   &__name {

@@ -9,7 +9,6 @@ import DetailedUser from "./components/DetailedUser";
 ReactDOM.render(
   <React.StrictMode>
     <App />
-    <DetailedUser />
   </React.StrictMode>,
   document.getElementById('root')
 );
