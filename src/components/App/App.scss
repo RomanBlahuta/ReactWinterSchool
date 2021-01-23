@@ -1,0 +1,29 @@
+.App {
+  text-align: center;
+
+  &__searchField {
+
+  }
+
+  &__header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__logo {
+    width: 438px;
+    height: 129px
+  }
+
+  &__resultContainer {
+  }
+
+  &__cardList {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    max-width: 1000px;
+    margin: auto;
+  }
+}

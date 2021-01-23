@@ -1,0 +1,23 @@
+.Card {
+  width: 282px;
+  height: 502px;
+  border-radius: 12px;
+  background-color: #2A2A42;
+  margin: 12px;
+
+  &__content {
+    text-align: left;
+    padding: 24px 16px;
+  }
+
+  &__name {
+    color: white;
+    font-size: 24px;
+  }
+
+  &__tags {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+}

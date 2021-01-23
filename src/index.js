@@ -1,12 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
+import './index.scss';
+import './components/DetailedUser'
+import App from './components/App';
 import reportWebVitals from './reportWebVitals';
+import DetailedUser from "./components/DetailedUser";
 
 ReactDOM.render(
   <React.StrictMode>
     <App />
+    <DetailedUser />
   </React.StrictMode>,
   document.getElementById('root')
 );
