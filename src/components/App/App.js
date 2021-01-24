@@ -13,7 +13,7 @@ function App() {
             <Logo className="App__logo" />
             <span> universe</span>
         </h1>
-        <Search className="headerSearch" />
+        <Search className="main" />
 
         <div className="App__selects">
             <Select/>
@@ -24,6 +24,7 @@ function App() {
 
         <div className="App__resultContainer">
             <div className="App__cardList">
+                <Card />
                 <Card />
                 <Card />
                 <Card />

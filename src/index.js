@@ -8,7 +8,8 @@ import DetailedUser from "./components/DetailedUser";
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    {/*<App />*/}
+    <DetailedUser />
   </React.StrictMode>,
   document.getElementById('root')
 );
