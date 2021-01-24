@@ -1,16 +1,16 @@
 .Header {
-  height: 120px;
-  background-color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding-bottom: 25px;
+    height: 120px;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 25px;
 
-  &__logo {
-    position: absolute;
-    left: 130px;
-    top: 46px;
-    width: 190px;
-    height: 56px;
-  }
+    &__logo {
+        position: absolute;
+        left: 130px;
+        top: 46px;
+        width: 190px;
+        height: 56px;
+    }
 }

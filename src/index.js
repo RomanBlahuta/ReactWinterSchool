@@ -1,17 +1,17 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.scss';
-import './components/DetailedUser'
-import App from './components/App';
-import reportWebVitals from './reportWebVitals';
-import DetailedUser from "./components/DetailedUser";
+import React from "react";
+import ReactDOM from "react-dom";
+import "./index.scss";
+import "./pages/DetailedUser";
+import App from "./pages/Home";
+import reportWebVitals from "./reportWebVitals";
+import DetailedUser from "./pages/DetailedUser";
+import Router from "./router";
 
 ReactDOM.render(
-  <React.StrictMode>
-    {/*<App />*/}
-    <DetailedUser />
-  </React.StrictMode>,
-  document.getElementById('root')
+    <React.StrictMode>
+        <Router></Router>
+    </React.StrictMode>,
+    document.getElementById("root")
 );
 
 // If you want to start measuring performance in your app, pass a function

@@ -1,18 +1,17 @@
 .Select {
-  background: #F3F7FD;
-  border-radius: 8px;
-  margin-right: 20px;
-  margin-left: 20px;
-  font-size: 18px;
-  font-weight: bold;
-  padding: 20px 25px;
+    background: #f3f7fd;
+    border-radius: 8px;
+    margin-right: 20px;
+    margin-left: 20px;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 20px 25px;
 
+    &__label {
+        color: var(--cta);
+    }
 
-  &__label {
-    color: var(--cta);
-  }
-
-  &__down {
-    margin-left: 36px;
-  }
+    &__down {
+        margin-left: 36px;
+    }
 }
