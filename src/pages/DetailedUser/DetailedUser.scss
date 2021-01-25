@@ -1,18 +1,17 @@
 .DetailedUser {
     display: flex;
     justify-content: center;
-    align-items: center;
     flex-wrap: wrap;
 
     &__container {
         padding: 40px;
         width: 1200px;
-        height: 500px;
         background: #2a2a42;
         border-radius: 12px;
         margin-top: 30px;
         display: flex;
         justify-content: start;
+        margin-bottom: 40px;
     }
 
     &__activeLink {
@@ -38,13 +37,12 @@
     &__mainInfo {
         display: flex;
         justify-content: start;
-        align-items: center;
+        align-items: start;
         margin-top: 40px;
     }
 
     &__col {
         width: 50%;
-        height: 300px;
     }
 
     &__navText {
@@ -61,6 +59,7 @@
 
     &__itemImg {
         margin-top: 20px;
+        border-radius: 12px;
     }
 }
 

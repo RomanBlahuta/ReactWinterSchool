@@ -4,13 +4,24 @@ import Header from "../../components/Header";
 import Tag from "../../components/Tag";
 import LabelValue from "../../components/LabelValue";
 import { NavLink, useParams } from "react-router-dom";
+import { httpGet } from "../../util/request";
 
 const DetailedUser = ({ selectCharacter }) => {
     const { id } = useParams();
     const characterInfo = selectCharacter(Number(id));
-    console.log(characterInfo);
+    //console.log(characterInfo);
 
-    const { name, status, species, image } = characterInfo || {};
+    const { name, status, species, type, gender, origin, location, image, episode, url, created } = characterInfo || {};
+
+    let characterEpisodeList = [];
+
+    let episodeData = [];
+    for (let ep of episode) {
+        let epObj = JSON.parse(httpGet(ep));
+        episodeData.push(epObj);
+
+        characterEpisodeList.push(`${epObj.episode}: ${epObj.name}`);
+    }
 
     return characterInfo ? (
         <div>
@@ -23,7 +34,7 @@ const DetailedUser = ({ selectCharacter }) => {
                         &nbsp;|&nbsp;
                         <NavLink
                             exact
-                            to="/character"
+                            to={`/character/${id}`}
                             className="DetailedUser__link"
                             activeClassName="DetailedUser__activeLink"
                         >
@@ -45,30 +56,24 @@ const DetailedUser = ({ selectCharacter }) => {
                         </h1>
 
                         <div className="DetailedUser__tagList">
-                            <Tag></Tag>
-                            <Tag></Tag>
+                            <Tag text={status}></Tag>
+                            <Tag text={gender}></Tag>
                         </div>
 
                         <div className="DetailedUser__mainInfo">
                             <div className="DetailedUser__col">
-                                <LabelValue label="Species" value="Human"></LabelValue>
-                                <LabelValue label="Origin" value="Earth"></LabelValue>
-                                <LabelValue label="Birthday" value="10 Jun 2020"></LabelValue>
-                                <LabelValue
-                                    label="Last Known Location"
-                                    value="Earth (Replacement Dimension)"
-                                ></LabelValue>
+                                <LabelValue label="Species" value={species}></LabelValue>
+                                <LabelValue label="Origin" value={origin.name}></LabelValue>
+                                <LabelValue label="Birthday" value={created}></LabelValue>
+                                <LabelValue label="Last Known Location" value={location.name}></LabelValue>
                                 <LabelValue
                                     label="First seen in"
-                                    value="Edge of Tomorty: Rick, Die, Rickpeat"
+                                    value={episodeData[0].episode + ": " + episodeData[0].name}
                                 ></LabelValue>
                             </div>
 
                             <div className="DetailedUser__col">
-                                <LabelValue
-                                    label="Episodes"
-                                    value="S03E07: The Ricklantis Mixup <br /> S01E10: Close Rick-counters of the Rick Kind  <br /> S03E07: The Ricklantis Mixup <br /> S01E10: Close Rick-counters of the Rick Kind "
-                                ></LabelValue>
+                                <LabelValue label="Episodes" value={characterEpisodeList.join("\n")}></LabelValue>
                             </div>
                         </div>
                     </div>

@@ -4,16 +4,23 @@ import Tag from "../Tag";
 import LabelValue from "../LabelValue";
 import { Link } from "react-router-dom";
 import { PropTypes } from "prop-types";
+import { httpGet } from "../../util/request";
 
 const Card = ({ id, name, status, species, type, gender, origin, location, image, episode, url, created }) => {
-    console.log(image);
+    //console.log(image);
+
+    let episodeData = [];
+    for (let ep of episode) {
+        let epObj = JSON.parse(httpGet(ep));
+        //console.log(epObj);
+        episodeData.push(epObj);
+    }
 
     return (
         <div className="Card">
             <div className="Card__imageHolder">
                 <Link to={`/character/${id}`}>
-                    {" "}
-                    <img src={image} width="100%" className="Card_image" />{" "}
+                    <img src={image} width="100%" className="Card__image" />
                 </Link>
             </div>
             <div className="Card__content">
@@ -23,12 +30,15 @@ const Card = ({ id, name, status, species, type, gender, origin, location, image
                 </Link>
 
                 <div className="Card__tags">
-                    <Tag />
-                    <Tag />
+                    <Tag text={status} />
+                    <Tag text={gender} />
                 </div>
 
-                <LabelValue label="Last known location" value="Earth (Replacement Dimension)"></LabelValue>
-                <LabelValue label="Last known location" value="Earth (Replacement Dimension)"></LabelValue>
+                <LabelValue label="Last known location" value={location.name}></LabelValue>
+                <LabelValue
+                    label="First appeared in"
+                    value={episodeData[0].episode + ": " + episodeData[0].name}
+                ></LabelValue>
             </div>
         </div>
     );

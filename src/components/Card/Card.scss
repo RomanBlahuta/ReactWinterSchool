@@ -20,4 +20,8 @@
         align-items: center;
         flex-wrap: wrap;
     }
+
+    &__image {
+        border-radius: 12px 12px 0 0;
+    }
 }

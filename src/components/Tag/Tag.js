@@ -1,11 +1,24 @@
 import "./Tag.scss";
 import Dead from "../../assets/dead.svg";
+import Alive from "../../assets/alive.svg";
+import Male from "../../assets/male.svg";
+import Female from "../../assets/female.svg";
+import Unknown from "../../assets/unknown.svg";
+import Genderless from "../../assets/genderless.svg";
 
-const Tag = () => {
+const Tag = ({ text }) => {
+    const tagIcons = {
+        Alive: Alive,
+        Dead: Dead,
+        unknown: Unknown,
+        Male: Male,
+        Female: Female,
+        Genderless: Genderless,
+    };
+
     return (
         <div className="Tag">
-            {" "}
-            <img src={Dead} /> Dead{" "}
+            <img src={tagIcons[text]} /> {text}
         </div>
     );
 };
