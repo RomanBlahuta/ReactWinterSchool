@@ -15,6 +15,10 @@ function Home({ characters }) {
     const [currentActive, setCurrentActive] = useState(1);
     const [pages, setPages] = useState([1, 2, 3, 4, 5]);
     const [actives, setActives] = useState({ 1: "active", 2: "inactive", 3: "inactive", 4: "inactive", 5: "inactive" });
+    const statuses = ["All statuses", "Alive", "Dead", "unknown"];
+    const genders = ["All genders", "Male", "Female", "unknown", "Genderless"];
+    const [statusFilter, setStatusFilter] = useState("All statuses");
+    const [genderFilter, setGenderFilter] = useState("All genders");
 
     const handleClickNext = () => {
         if (currentActive === 5) {
@@ -79,8 +83,8 @@ function Home({ characters }) {
                 <Search className="main" />
 
                 <div className="App__selects">
-                    <Select />
-                    <Select />
+                    <Select label="Status" value={statusFilter} options={statuses} valueHandler={setStatusFilter}/>
+                    <Select  label="Gender" value={genderFilter} options={genders} valueHandler={setGenderFilter}/>
                 </div>
             </div>
 

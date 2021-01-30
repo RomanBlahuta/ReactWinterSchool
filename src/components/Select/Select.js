@@ -1,14 +1,25 @@
 import "./Select.scss";
 import Down from "../../assets/down.svg";
+import React, { useState } from "react";
 
-const Select = () => {
+const Select = ({label, value, options, valueHandler}) => {
+    const [active, setActive] = useState(false);
+    const setOption = (event) => valueHandler(event.target.textContent);
+    const renderOptions = (option) => <div key={`id-${option}`} className="Select__option" onClick={setOption}>{option}</div>
+
+    const toggle = () => setActive(!active);
+
     return (
-        <div className="Select">
-            <div className="Select_selectedOption">
-                <span className="Select__label">Status: </span>
-                <span className="Select__value">All statuses</span>
+        <div>
+            <div className="Select" onClick={toggle}>
+                <div className="Select__selectedOption">
+                    <span className="Select__label">{label}:&nbsp;</span>
+                    <span className="Select__value">{value}</span>
+                </div>
                 <img src={Down} className="Select__down" />
             </div>
+
+            <div className={`Select__dropdown Select__dropdown${active ? "_active" : "_inactive"}`}>{options.map(renderOptions)}</div>
         </div>
     );
 };

@@ -3,15 +3,45 @@
     border-radius: 8px;
     margin-right: 20px;
     margin-left: 20px;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: bold;
     padding: 20px 25px;
+    width: 260px;
+    cursor: pointer;
 
     &__label {
         color: var(--cta);
     }
 
     &__down {
-        margin-left: 36px;
+        position: relative;
+        left: 40px;
+    }
+
+    &__selectedOption {
+        display: inline-flex;
+        justify-content: center;
+    }
+
+    &__dropdown {
+        position: relative;
+        left: 20px;
+        box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+        width: 310px;
+
+        &_inactive {
+            visibility: hidden;
+        }
+    }
+
+    &__option {
+        padding: 3px 0;
+        font-size: 14px;
+        cursor: pointer;
+        background: white;
+    }
+
+    &__option:hover {
+        background: #c5c5e0;
     }
 }
