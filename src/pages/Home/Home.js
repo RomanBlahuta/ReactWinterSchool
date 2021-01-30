@@ -5,20 +5,34 @@ import Card from "../../components/Card";
 import Search from "../../components/Search";
 //import PageButton from "../../components/PageButton";
 import CardList from "../../components/CardList";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Left from "../../assets/left.svg";
 import Right from "../../assets/right.svg";
+import { getCharacters } from "../../util/request";
 
-function Home({ characters }) {
+function Home() {
     const [first, setFirst] = useState(0);
     const [last, setLast] = useState(4);
     const [currentActive, setCurrentActive] = useState(1);
     const [pages, setPages] = useState([1, 2, 3, 4, 5]);
     const [actives, setActives] = useState({ 1: "active", 2: "inactive", 3: "inactive", 4: "inactive", 5: "inactive" });
+    const [characters, setCharacters] = useState();
+
     const statuses = ["All statuses", "Alive", "Dead", "unknown"];
     const genders = ["All genders", "Male", "Female", "unknown", "Genderless"];
+
     const [statusFilter, setStatusFilter] = useState("All statuses");
     const [genderFilter, setGenderFilter] = useState("All genders");
+
+    useEffect(() => {
+        loadCharacters();
+    }, []);
+
+    const loadCharacters = async () => {
+        const items = await getCharacters();
+        setCharacters(items?.results);
+        //console.log(characters);
+    }
 
     const handleClickNext = () => {
         if (currentActive === 5) {
@@ -89,7 +103,7 @@ function Home({ characters }) {
             </div>
 
             <div className="App__resultContainer">
-                <CardList characters={characters.slice(first, last)}></CardList>
+                <CardList characters={characters ? characters.slice(first, last) : []}></CardList>
             </div>
 
             <div className="App__pageNav">
