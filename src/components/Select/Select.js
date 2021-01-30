@@ -5,7 +5,11 @@ import React, { useState } from "react";
 const Select = ({label, value, options, valueHandler}) => {
     const [active, setActive] = useState(false);
     const setOption = (event) => valueHandler(event.target.textContent);
-    const renderOptions = (option) => <div key={`id-${option}`} className="Select__option" onClick={setOption}>{option}</div>
+    const handleOptionClick = (event) => {
+        setOption(event);
+        setActive(false);
+    }
+    const renderOptions = (option) => <div key={`id-${option}`} className="Select__option" onClick={handleOptionClick}>{option}</div>
 
     const toggle = () => setActive(!active);
 

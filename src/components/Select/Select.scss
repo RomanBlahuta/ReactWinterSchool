@@ -9,6 +9,10 @@
     width: 260px;
     cursor: pointer;
 
+    &:hover {
+        background: #cadaf6;
+    }
+
     &__label {
         color: var(--cta);
     }
