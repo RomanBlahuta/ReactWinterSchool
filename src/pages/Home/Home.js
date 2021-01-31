@@ -10,6 +10,7 @@ import Left from "../../assets/left.svg";
 import Right from "../../assets/right.svg";
 import { getCharacters } from "../../util/request";
 import Pagination from "../../components/Pagination";
+import DynamicQuote from "../../components/DynamicQuote";
 
 function Home() {
     const [first, setFirst] = useState(0);
@@ -104,6 +105,7 @@ function Home() {
                     <Logo className="App__logo" />
                     <span> universe</span>
                 </h1>
+                <DynamicQuote />
                 <Search className="main" />
 
                 <div className="App__selects">
@@ -116,11 +118,12 @@ function Home() {
                 <CardList characters={characters ? characters.slice(first, last) : []}></CardList>
             </div>
 
-            <Pagination handleClickPrevious={handleClickPrevious} handleClickPageNumber={handleClickPageNumber} handleClickNext={handleClickNext} actives={actives} pages={pages}/>
-
-            {/*<div className={`App__firstPageErrorMessage${}`}>
-
-            </div>*/}
+            <Pagination
+                handleClickPrevious={handleClickPrevious}
+                handleClickPageNumber={handleClickPageNumber}
+                handleClickNext={handleClickNext}
+                actives={actives}
+                pages={pages}/>
         </div>
     );
 }
