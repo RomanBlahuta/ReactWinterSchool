@@ -9,14 +9,21 @@ import React, { useState, useEffect } from "react";
 import Left from "../../assets/left.svg";
 import Right from "../../assets/right.svg";
 import { getCharacters } from "../../util/request";
+import Pagination from "../../components/Pagination";
 
 function Home() {
     const [first, setFirst] = useState(0);
     const [last, setLast] = useState(4);
+
     const [currentActive, setCurrentActive] = useState(1);
     const [pages, setPages] = useState([1, 2, 3, 4, 5]);
     const [actives, setActives] = useState({ 1: "active", 2: "inactive", 3: "inactive", 4: "inactive", 5: "inactive" });
-    const [characters, setCharacters] = useState();
+    const [characters, setCharacters] = useState([]);
+
+    const [currentApiPage, setCurrentApiPage] = useState(1);
+    const [perApiPage, setPerApiPage] = useState(0);
+    const [apiTotal, setApiTotal] = useState(0);
+    const [apiPageCount, setApiPageCount] = useState(0);
 
     const statuses = ["All statuses", "Alive", "Dead", "unknown"];
     const genders = ["All genders", "Male", "Female", "unknown", "Genderless"];
@@ -25,13 +32,15 @@ function Home() {
     const [genderFilter, setGenderFilter] = useState("All genders");
 
     useEffect(() => {
-        loadCharacters();
+        loadCharacters(currentApiPage);
     }, []);
 
-    const loadCharacters = async () => {
-        const items = await getCharacters();
+    const loadCharacters = async (page) => {
+        const items = await getCharacters(page);
         setCharacters(items?.results);
-        //console.log(characters);
+        setPerApiPage(characters?.length);
+        setApiTotal(items?.info.count);
+        setApiPageCount(items?.info.pages);
     }
 
     const handleClickNext = () => {
@@ -50,6 +59,7 @@ function Home() {
 
         setFirst(first + 4);
         setLast(last + 4);
+        //console.log(perApiPage, apiTotal, apiPageCount);
     };
 
     const handleClickPrevious = () => {
@@ -76,7 +86,7 @@ function Home() {
     };
 
     const handleClickPageNumber = (event) => {
-        setFirst(0 + 4 * (Number(event.target.textContent) - 1));
+        setFirst(4 * (Number(event.target.textContent) - 1));
         setLast(4 * Number(event.target.textContent));
 
         actives[currentActive] = "inactive";
@@ -106,31 +116,7 @@ function Home() {
                 <CardList characters={characters ? characters.slice(first, last) : []}></CardList>
             </div>
 
-            <div className="App__pageNav">
-                <div className={`PageButton__inactive`} onClick={handleClickPrevious}>
-                    <img src={Left}></img>
-                </div>
-
-                <div className={`PageButton__${actives["1"]}`} onClick={handleClickPageNumber}>
-                    <span>{pages[0]}</span>
-                </div>
-                <div className={`PageButton__${actives["2"]}`} onClick={handleClickPageNumber}>
-                    <span>{pages[1]}</span>
-                </div>
-                <div className={`PageButton__${actives["3"]}`} onClick={handleClickPageNumber}>
-                    <span>{pages[2]}</span>
-                </div>
-                <div className={`PageButton__${actives["4"]}`} onClick={handleClickPageNumber}>
-                    <span>{pages[3]}</span>
-                </div>
-                <div className={`PageButton__${actives["5"]}`} onClick={handleClickPageNumber}>
-                    <span>{pages[4]}</span>
-                </div>
-
-                <div className={`PageButton__inactive`} onClick={handleClickNext}>
-                    <img src={Right}></img>
-                </div>
-            </div>
+            <Pagination handleClickPrevious={handleClickPrevious} handleClickPageNumber={handleClickPageNumber} handleClickNext={handleClickNext} actives={actives} pages={pages}/>
 
             {/*<div className={`App__firstPageErrorMessage${}`}>
 

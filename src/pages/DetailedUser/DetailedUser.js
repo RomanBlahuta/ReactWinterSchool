@@ -5,10 +5,11 @@ import Tag from "../../components/Tag";
 import LabelValue from "../../components/LabelValue";
 import { NavLink, useParams } from "react-router-dom";
 import { httpGet } from "../../util/request";
+import { getCharacter } from "../../util/request";
 
-const DetailedUser = ({ selectCharacter }) => {
+const DetailedUser = () => {
     const { id } = useParams();
-    const characterInfo = selectCharacter(Number(id));
+    const characterInfo = getCharacter(id);
     //console.log(characterInfo);
 
     const { name, status, species, type, gender, origin, location, image, episode, url, created } = characterInfo || {};

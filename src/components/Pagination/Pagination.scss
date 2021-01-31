@@ -1,0 +1,40 @@
+.Pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 40px 0 80px 0;
+}
+
+.PageButton {
+  &__inactive {
+    width: 32px;
+    height: 32px;
+    background: #2a2a42;
+    border-radius: 8px;
+    color: white;
+    margin: 0 8px;
+    font-weight: bold;
+    line-height: 32px;
+  }
+
+  &__inactive:hover {
+    background: white;
+    color: #2a2a42;
+  }
+
+  &__active {
+    width: 32px;
+    height: 32px;
+    color: #2a2a42;
+    border-radius: 8px;
+    background: white;
+    margin: 0 8px;
+    font-weight: bold;
+    line-height: 32px;
+  }
+
+  &__active:hover {
+    background: #2a2a42;
+    color: white;
+  }
+}

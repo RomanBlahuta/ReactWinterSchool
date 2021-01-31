@@ -7,8 +7,13 @@ export function httpGet(theUrl) {
     return xmlHttp.responseText;
 }
 
-export const getCharacters = async () => {
-    const response = await fetch(`${SERVER_URL}/character?page=2`);
+export const getCharacters = async (page) => {
+    const response = await fetch(`${SERVER_URL}/character?page=${page}`);
+    return response.json();
+}
+
+export const getCharacter = async (id) => {
+    const response = await fetch(`${SERVER_URL}/character/${id}`);
     return response.json();
 }
 
