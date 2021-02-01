@@ -5,6 +5,7 @@ import LabelValue from '../LabelValue';
 import { Link } from 'react-router-dom';
 import { PropTypes } from 'prop-types';
 import { httpGet } from '../../util/request';
+import { useState, useEffect } from "react";
 
 const Card = ({
     id,
@@ -21,10 +22,15 @@ const Card = ({
     created,
 }) => {
 
-    let episodeData = [];
-    for (let ep of episode) {
-        let epObj = JSON.parse(httpGet(ep));
-        episodeData.push(epObj);
+    const [firstSeen, setFirstSeen] = useState("Loading...");
+
+    useEffect(() => {
+        loadFirstSeen();
+    }, [])
+
+    const loadFirstSeen = async () => {
+        let epObj = await httpGet(episode[0]);
+        setFirstSeen(`${epObj.episode}: ${epObj.name}`);
     }
 
     return (
@@ -48,7 +54,7 @@ const Card = ({
                 <LabelValue label="Last known location" values={[location.name]}></LabelValue>
                 <LabelValue
                     label="First appeared in"
-                    values={[episodeData[0].episode + ': ' + episodeData[0].name]}
+                    values={[firstSeen]}
                 ></LabelValue>
             </div>
         </div>

@@ -1,10 +1,8 @@
 import { SERVER_URL } from './consts';
 
-export function httpGet(theUrl) {
-    var xmlHttp = new XMLHttpRequest();
-    xmlHttp.open('GET', theUrl, false); // false for synchronous request
-    xmlHttp.send(null);
-    return xmlHttp.responseText;
+export async function httpGet(theUrl) {
+    const response = await fetch(theUrl);
+    return response.json();
 }
 
 export const getCharacters = async (page) => {
@@ -17,4 +15,9 @@ export const getCharacter = async (id) => {
     return response.json();
 };
 
-//export { httpGet };
+export function httpGetSync(theUrl) {
+    let xmlHttp = new XMLHttpRequest();
+    xmlHttp.open("GET", theUrl, false);
+    xmlHttp.send(null);
+    return xmlHttp.responseText;
+}

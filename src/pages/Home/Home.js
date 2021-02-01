@@ -2,7 +2,6 @@ import './Home.scss';
 import { ReactComponent as Logo } from '../../assets/rickmorty.svg';
 import Select from '../../components/Select';
 import Search from '../../components/Search';
-//import PageButton from "../../components/PageButton";
 import CardList from '../../components/CardList';
 import React, { useState, useEffect } from 'react';
 import { getCharacters } from '../../util/request';
@@ -63,7 +62,6 @@ function Home() {
 
         setFirst(first + 4);
         setLast(last + 4);
-        //console.log(perApiPage, apiTotal, apiPageCount);
     };
 
     const handleClickPrevious = () => {

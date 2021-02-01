@@ -13,7 +13,7 @@ const Pagination = ({
     const indexes = [0, 1, 2, 3, 4];
 
     const renderNumbers = (pageNum) => (
-        <PageButton active={actives[pageNum + 1]} action={handleClickPageNumber}>
+        <PageButton key={pageNum} active={actives[pageNum + 1]} action={handleClickPageNumber}>
             <span>{pages[pageNum]}</span>
         </PageButton>
     );

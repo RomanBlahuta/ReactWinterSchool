@@ -1,29 +1,58 @@
 import './DetailedCharacter.scss';
-import Header from '../../components/Header';
 import Tag from '../../components/Tag';
 import LabelValue from '../../components/LabelValue';
 import { NavLink, useParams } from 'react-router-dom';
-import { httpGet } from '../../util/request';
-import { getCharacter } from '../../util/request';
+import {httpGet, getCharacter, httpGetSync} from '../../util/request';
+import { useState, useEffect } from "react";
 
 const DetailedCharacter = () => {
     const { id } = useParams();
-    const characterInfo = getCharacter(id);
-    //console.log(characterInfo);
+    const [characterInfo, setCharacterInfo] = useState({
+        name: "Loading...",
+        status: "Loading...",
+        species: "Loading...",
+        type: "Loading...",
+        gender: "Loading...",
+        origin: "Loading...",
+        location: {name: "Loading...", url: "Loading..."},
+        image: "",
+        episode: [],
+        url: "Loading...",
+        created: "Loading..."
+    });
 
-    const { name, status, species, type, gender, origin, location, image, episode, url, created } =
-        characterInfo || {};
+    const [episodes, setEpisodes] = useState(["Loading..."]);
+    const [episodeNames, setEpisodeNames] = useState(["Loading..."]);
 
-    //todo
-    let characterEpisodeList = [];
+    const { name, status, species, type, gender, origin, location, image, episode, url, created } = characterInfo || {};
 
-    let episodeData = [];
-    for (let ep of episode) {
-        let epObj = JSON.parse(httpGet(ep));
-        episodeData.push(epObj);
+    useEffect(() => {
+        loadCharacter(id);
+    }, []);
 
-        characterEpisodeList.push(`${epObj.episode}: ${epObj.name}`);
+    useEffect(() => {
+        loadEpisodes();
+    }, [])
+
+    const loadCharacter = async (charId) => {
+        const item = await getCharacter(charId);
+        setCharacterInfo(item);
     }
+
+    const extractEpisodeName = (episodeObject) => `${episodeObject.episode}: ${episodeObject.name}`;
+
+    const loadEpisodes = async (episodes) => {
+        const item = await getCharacter(id);
+
+        let episodeObjects = [];
+        for (const ep of item.episode) {
+            const episodeData = await httpGet(ep);
+            episodeObjects.push(episodeData);
+        }
+
+        setEpisodes(episodeObjects);
+        setEpisodeNames(episodeObjects.map(extractEpisodeName));
+    };
 
     return characterInfo ? (
         <div>
@@ -54,7 +83,7 @@ const DetailedCharacter = () => {
 
                 <div className="DetailedCharacter__container">
                     <div className="DetailedCharacter__image">
-                        <img src={image} className="DetailedCharacter__itemImg" />
+                        <img src={image} alt="Loading..." className="DetailedCharacter__itemImg" />
                     </div>
 
                     <div className="DetailedCharacter__description">
@@ -69,23 +98,23 @@ const DetailedCharacter = () => {
 
                         <div className="DetailedCharacter__mainInfo">
                             <div className="DetailedCharacter__col">
-                                <LabelValue label="Species" value={species}></LabelValue>
-                                <LabelValue label="Origin" value={origin.name}></LabelValue>
-                                <LabelValue label="Birthday" value={created}></LabelValue>
+                                <LabelValue label="Species" values={[species]}></LabelValue>
+                                <LabelValue label="Origin" values={[origin.name]}></LabelValue>
+                                <LabelValue label="Birthday" values={[created]}></LabelValue>
                                 <LabelValue
                                     label="Last Known Location"
-                                    value={location.name}
+                                    values={[location.name]}
                                 ></LabelValue>
                                 <LabelValue
                                     label="First seen in"
-                                    value={episodeData[0].episode + ': ' + episodeData[0].name}
+                                    values={[episodeNames[0]]}
                                 ></LabelValue>
                             </div>
 
                             <div className="DetailedCharacter__col">
                                 <LabelValue
                                     label="Episodes"
-                                    value={characterEpisodeList.join('\n')}
+                                    values={episodeNames}
                                 ></LabelValue>
                             </div>
                         </div>

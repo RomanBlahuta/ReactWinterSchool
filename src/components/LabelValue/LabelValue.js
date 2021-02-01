@@ -2,7 +2,7 @@ import './LabelValue.scss';
 
 const LabelValue = ({ label, values }) => {
 
-    const renderValues = (value) => <p className="LabelValue__value">{value}</p>;
+    const renderValues = (value) => <p key={`id-${label}-${value}`} className="LabelValue__value">{value}</p>;
 
     return (
         <div className="LabelValue">

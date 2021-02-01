@@ -14,8 +14,16 @@
         margin-bottom: 40px;
     }
 
+    &__link {
+        text-decoration: none;
+
+        &:hover {
+            color: rgba(63, 139, 253, 1);
+        }
+    }
+
     &__activeLink {
-        color: white;
+        color: rgba(255, 255, 255, 0.5);
     }
 
     &__image {
@@ -46,15 +54,15 @@
     }
 
     &__navText {
-        margin-right: 990px;
+        margin-right: 1030px;
         margin-top: 60px;
         color: #3f8bfd;
         font-weight: bold;
+        font-size: 20px;
     }
 
     &__itemName {
-        opacity: 0.5;
-        color: white;
+        color: rgba(255, 255, 255, 0.3);
     }
 
     &__itemImg {
