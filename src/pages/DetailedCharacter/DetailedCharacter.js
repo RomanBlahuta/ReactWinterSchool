@@ -1,5 +1,4 @@
-import './DetailedUser.scss';
-import detailed from '../../assets/detailed.svg';
+import './DetailedCharacter.scss';
 import Header from '../../components/Header';
 import Tag from '../../components/Tag';
 import LabelValue from '../../components/LabelValue';
@@ -7,7 +6,7 @@ import { NavLink, useParams } from 'react-router-dom';
 import { httpGet } from '../../util/request';
 import { getCharacter } from '../../util/request';
 
-const DetailedUser = () => {
+const DetailedCharacter = () => {
     const { id } = useParams();
     const characterInfo = getCharacter(id);
     //console.log(characterInfo);
@@ -15,6 +14,7 @@ const DetailedUser = () => {
     const { name, status, species, type, gender, origin, location, image, episode, url, created } =
         characterInfo || {};
 
+    //todo
     let characterEpisodeList = [];
 
     let episodeData = [];
@@ -27,23 +27,23 @@ const DetailedUser = () => {
 
     return characterInfo ? (
         <div>
-            <div className="DetailedUser">
-                <p className="DetailedUser__navText">
+            <div className="DetailedCharacter">
+                <p className="DetailedCharacter__navText">
                     <NavLink
                         exact
                         to="/"
-                        className="DetailedUser__link"
-                        activeClassName="DetailedUser__activeLink"
+                        className="DetailedCharacter__link"
+                        activeClassName="DetailedCharacter__activeLink"
                     >
                         Home
                     </NavLink>
-                    <span className="DetailedUser__itemName">
+                    <span className="DetailedCharacter__itemName">
                         &nbsp;|&nbsp;
                         <NavLink
                             exact
                             to={`/character/${id}`}
-                            className="DetailedUser__link"
-                            activeClassName="DetailedUser__activeLink"
+                            className="DetailedCharacter__link"
+                            activeClassName="DetailedCharacter__activeLink"
                         >
                             #{id} {name}
                         </NavLink>
@@ -52,23 +52,23 @@ const DetailedUser = () => {
 
                 <div className="break"></div>
 
-                <div className="DetailedUser__container">
-                    <div className="DetailedUser__image">
-                        <img src={image} className="DetailedUser__itemImg" />
+                <div className="DetailedCharacter__container">
+                    <div className="DetailedCharacter__image">
+                        <img src={image} className="DetailedCharacter__itemImg" />
                     </div>
 
-                    <div className="DetailedUser__description">
-                        <h1 className="DetailedUser__headName">
+                    <div className="DetailedCharacter__description">
+                        <h1 className="DetailedCharacter__headName">
                             #{id} {name}
                         </h1>
 
-                        <div className="DetailedUser__tagList">
+                        <div className="DetailedCharacter__tagList">
                             <Tag text={status}></Tag>
                             <Tag text={gender}></Tag>
                         </div>
 
-                        <div className="DetailedUser__mainInfo">
-                            <div className="DetailedUser__col">
+                        <div className="DetailedCharacter__mainInfo">
+                            <div className="DetailedCharacter__col">
                                 <LabelValue label="Species" value={species}></LabelValue>
                                 <LabelValue label="Origin" value={origin.name}></LabelValue>
                                 <LabelValue label="Birthday" value={created}></LabelValue>
@@ -82,7 +82,7 @@ const DetailedUser = () => {
                                 ></LabelValue>
                             </div>
 
-                            <div className="DetailedUser__col">
+                            <div className="DetailedCharacter__col">
                                 <LabelValue
                                     label="Episodes"
                                     value={characterEpisodeList.join('\n')}
@@ -94,8 +94,8 @@ const DetailedUser = () => {
             </div>
         </div>
     ) : (
-        <div className="DetailedUser"> Error 404: Not Found</div>
+        <div className="DetailedCharacter"> Error 404: Not Found</div>
     );
 };
 
-export default DetailedUser;
+export default DetailedCharacter;

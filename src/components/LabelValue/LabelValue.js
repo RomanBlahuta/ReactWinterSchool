@@ -1,10 +1,13 @@
 import './LabelValue.scss';
 
-const LabelValue = ({ label, value }) => {
+const LabelValue = ({ label, values }) => {
+
+    const renderValues = (value) => <p className="LabelValue__value">{value}</p>;
+
     return (
         <div className="LabelValue">
             <p className="LabelValue__label">{label}</p>
-            <p className="LabelValue__value">{value}</p>
+            {values.map(renderValues)}
         </div>
     );
 };

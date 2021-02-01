@@ -20,12 +20,10 @@ const Card = ({
     url,
     created,
 }) => {
-    //console.log(image);
 
     let episodeData = [];
     for (let ep of episode) {
         let epObj = JSON.parse(httpGet(ep));
-        //console.log(epObj);
         episodeData.push(epObj);
     }
 
@@ -37,7 +35,7 @@ const Card = ({
                 </Link>
             </div>
             <div className="Card__content">
-                <Link to={`/character/${id}`}>
+                <Link className="Card__link" to={`/character/${id}`}>
                     {' '}
                     <h1 className="Card__name">{name}</h1>{' '}
                 </Link>
@@ -47,10 +45,10 @@ const Card = ({
                     <Tag text={gender} />
                 </div>
 
-                <LabelValue label="Last known location" value={location.name}></LabelValue>
+                <LabelValue label="Last known location" values={[location.name]}></LabelValue>
                 <LabelValue
                     label="First appeared in"
-                    value={episodeData[0].episode + ': ' + episodeData[0].name}
+                    values={[episodeData[0].episode + ': ' + episodeData[0].name]}
                 ></LabelValue>
             </div>
         </div>

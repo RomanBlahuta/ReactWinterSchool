@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.scss';
-import './pages/DetailedUser';
+import './pages/DetailedCharacter';
 import App from './pages/Home';
 import reportWebVitals from './reportWebVitals';
-import DetailedUser from './pages/DetailedUser';
+import DetailedCharacter from './pages/DetailedCharacter';
 import Router from './router';
 
 ReactDOM.render(
