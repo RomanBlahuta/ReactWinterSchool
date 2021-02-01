@@ -1,18 +1,19 @@
-import "./DetailedUser.scss";
-import detailed from "../../assets/detailed.svg";
-import Header from "../../components/Header";
-import Tag from "../../components/Tag";
-import LabelValue from "../../components/LabelValue";
-import { NavLink, useParams } from "react-router-dom";
-import { httpGet } from "../../util/request";
-import { getCharacter } from "../../util/request";
+import './DetailedUser.scss';
+import detailed from '../../assets/detailed.svg';
+import Header from '../../components/Header';
+import Tag from '../../components/Tag';
+import LabelValue from '../../components/LabelValue';
+import { NavLink, useParams } from 'react-router-dom';
+import { httpGet } from '../../util/request';
+import { getCharacter } from '../../util/request';
 
 const DetailedUser = () => {
     const { id } = useParams();
     const characterInfo = getCharacter(id);
     //console.log(characterInfo);
 
-    const { name, status, species, type, gender, origin, location, image, episode, url, created } = characterInfo || {};
+    const { name, status, species, type, gender, origin, location, image, episode, url, created } =
+        characterInfo || {};
 
     let characterEpisodeList = [];
 
@@ -28,7 +29,12 @@ const DetailedUser = () => {
         <div>
             <div className="DetailedUser">
                 <p className="DetailedUser__navText">
-                    <NavLink exact to="/" className="DetailedUser__link" activeClassName="DetailedUser__activeLink">
+                    <NavLink
+                        exact
+                        to="/"
+                        className="DetailedUser__link"
+                        activeClassName="DetailedUser__activeLink"
+                    >
                         Home
                     </NavLink>
                     <span className="DetailedUser__itemName">
@@ -66,15 +72,21 @@ const DetailedUser = () => {
                                 <LabelValue label="Species" value={species}></LabelValue>
                                 <LabelValue label="Origin" value={origin.name}></LabelValue>
                                 <LabelValue label="Birthday" value={created}></LabelValue>
-                                <LabelValue label="Last Known Location" value={location.name}></LabelValue>
+                                <LabelValue
+                                    label="Last Known Location"
+                                    value={location.name}
+                                ></LabelValue>
                                 <LabelValue
                                     label="First seen in"
-                                    value={episodeData[0].episode + ": " + episodeData[0].name}
+                                    value={episodeData[0].episode + ': ' + episodeData[0].name}
                                 ></LabelValue>
                             </div>
 
                             <div className="DetailedUser__col">
-                                <LabelValue label="Episodes" value={characterEpisodeList.join("\n")}></LabelValue>
+                                <LabelValue
+                                    label="Episodes"
+                                    value={characterEpisodeList.join('\n')}
+                                ></LabelValue>
                             </div>
                         </div>
                     </div>

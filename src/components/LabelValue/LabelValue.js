@@ -1,4 +1,4 @@
-import "./LabelValue.scss";
+import './LabelValue.scss';
 
 const LabelValue = ({ label, value }) => {
     return (

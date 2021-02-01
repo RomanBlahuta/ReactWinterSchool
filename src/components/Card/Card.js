@@ -1,12 +1,25 @@
-import "./Card.scss";
-import Photo from "../../assets/image 3.svg";
-import Tag from "../Tag";
-import LabelValue from "../LabelValue";
-import { Link } from "react-router-dom";
-import { PropTypes } from "prop-types";
-import { httpGet } from "../../util/request";
+import './Card.scss';
+import Photo from '../../assets/image 3.svg';
+import Tag from '../Tag';
+import LabelValue from '../LabelValue';
+import { Link } from 'react-router-dom';
+import { PropTypes } from 'prop-types';
+import { httpGet } from '../../util/request';
 
-const Card = ({ id, name, status, species, type, gender, origin, location, image, episode, url, created }) => {
+const Card = ({
+    id,
+    name,
+    status,
+    species,
+    type,
+    gender,
+    origin,
+    location,
+    image,
+    episode,
+    url,
+    created,
+}) => {
     //console.log(image);
 
     let episodeData = [];
@@ -25,8 +38,8 @@ const Card = ({ id, name, status, species, type, gender, origin, location, image
             </div>
             <div className="Card__content">
                 <Link to={`/character/${id}`}>
-                    {" "}
-                    <h1 className="Card__name">{name}</h1>{" "}
+                    {' '}
+                    <h1 className="Card__name">{name}</h1>{' '}
                 </Link>
 
                 <div className="Card__tags">
@@ -37,7 +50,7 @@ const Card = ({ id, name, status, species, type, gender, origin, location, image
                 <LabelValue label="Last known location" value={location.name}></LabelValue>
                 <LabelValue
                     label="First appeared in"
-                    value={episodeData[0].episode + ": " + episodeData[0].name}
+                    value={episodeData[0].episode + ': ' + episodeData[0].name}
                 ></LabelValue>
             </div>
         </div>
@@ -52,7 +65,7 @@ Card.propTypes = {
     status: PropTypes.string.isRequired,
     species: PropTypes.string.isRequired,
     type: PropTypes.string.isRequired,
-    gender: PropTypes.oneOf(["Male", "Female", "unknown", "Genderless"]),
+    gender: PropTypes.oneOf(['Male', 'Female', 'unknown', 'Genderless']),
     origin: PropTypes.shape({
         url: PropTypes.string.isRequired,
         name: PropTypes.string.isRequired,

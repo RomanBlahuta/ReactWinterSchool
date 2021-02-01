@@ -1,7 +1,7 @@
-import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
-import Home from "./pages/Home";
-import DetailedUser from "./pages/DetailedUser";
-import Header from "./components/Header";
+import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
+import Home from './pages/Home';
+import DetailedUser from './pages/DetailedUser';
+import Header from './components/Header';
 
 //import characters from "./data/stubCharacters.json";
 

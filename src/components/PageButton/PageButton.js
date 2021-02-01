@@ -1,9 +1,9 @@
-import "./PageButton.scss";
+import './PageButton.scss';
 
-const PageButton = ({ content, active, action }) => {
+const PageButton = ({ children, active, action }) => {
     return (
-        <div className={`PageButton__${active}`} onClick={action}>
-            {content}
+        <div className={`PageButton PageButton__${active}`} onClick={action}>
+            {children}
         </div>
     );
 };

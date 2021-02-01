@@ -1,5 +1,5 @@
-import "./Search.scss";
-import SearchIcon from "../../assets/search.svg";
+import './Search.scss';
+import SearchIcon from '../../assets/search.svg';
 
 const Search = ({ className }) => {
     return (

@@ -1,1 +1,1 @@
-export { default } from "./DynamicQuote";
+export { default } from './DynamicQuote';

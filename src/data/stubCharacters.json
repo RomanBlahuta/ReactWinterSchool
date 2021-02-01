@@ -1,5 +1,10 @@
 {
-    "info": { "count": 671, "pages": 34, "next": "https://rickandmortyapi.com/api/character?page=2", "prev": null },
+    "info": {
+        "count": 671,
+        "pages": 34,
+        "next": "https://rickandmortyapi.com/api/character?page=2",
+        "prev": null
+    },
     "results": [
         {
             "id": 1,
@@ -8,7 +13,10 @@
             "species": "Human",
             "type": "",
             "gender": "Male",
-            "origin": { "name": "Earth (C-137)", "url": "https://rickandmortyapi.com/api/location/1" },
+            "origin": {
+                "name": "Earth (C-137)",
+                "url": "https://rickandmortyapi.com/api/location/1"
+            },
             "location": {
                 "name": "Earth (Replacement Dimension)",
                 "url": "https://rickandmortyapi.com/api/location/20"
@@ -67,7 +75,10 @@
             "species": "Human",
             "type": "",
             "gender": "Male",
-            "origin": { "name": "Earth (C-137)", "url": "https://rickandmortyapi.com/api/location/1" },
+            "origin": {
+                "name": "Earth (C-137)",
+                "url": "https://rickandmortyapi.com/api/location/1"
+            },
             "location": {
                 "name": "Earth (Replacement Dimension)",
                 "url": "https://rickandmortyapi.com/api/location/20"
@@ -126,7 +137,10 @@
             "species": "Human",
             "type": "",
             "gender": "Female",
-            "origin": { "name": "Earth (Replacement Dimension)", "url": "https://rickandmortyapi.com/api/location/20" },
+            "origin": {
+                "name": "Earth (Replacement Dimension)",
+                "url": "https://rickandmortyapi.com/api/location/20"
+            },
             "location": {
                 "name": "Earth (Replacement Dimension)",
                 "url": "https://rickandmortyapi.com/api/location/20"
@@ -177,7 +191,10 @@
             "species": "Human",
             "type": "",
             "gender": "Female",
-            "origin": { "name": "Earth (Replacement Dimension)", "url": "https://rickandmortyapi.com/api/location/20" },
+            "origin": {
+                "name": "Earth (Replacement Dimension)",
+                "url": "https://rickandmortyapi.com/api/location/20"
+            },
             "location": {
                 "name": "Earth (Replacement Dimension)",
                 "url": "https://rickandmortyapi.com/api/location/20"
@@ -228,7 +245,10 @@
             "species": "Human",
             "type": "",
             "gender": "Male",
-            "origin": { "name": "Earth (Replacement Dimension)", "url": "https://rickandmortyapi.com/api/location/20" },
+            "origin": {
+                "name": "Earth (Replacement Dimension)",
+                "url": "https://rickandmortyapi.com/api/location/20"
+            },
             "location": {
                 "name": "Earth (Replacement Dimension)",
                 "url": "https://rickandmortyapi.com/api/location/20"
@@ -289,10 +309,19 @@
             "species": "Human",
             "type": "Genetic experiment",
             "gender": "Male",
-            "origin": { "name": "Earth (Replacement Dimension)", "url": "https://rickandmortyapi.com/api/location/20" },
-            "location": { "name": "Testicle Monster Dimension", "url": "https://rickandmortyapi.com/api/location/21" },
+            "origin": {
+                "name": "Earth (Replacement Dimension)",
+                "url": "https://rickandmortyapi.com/api/location/20"
+            },
+            "location": {
+                "name": "Testicle Monster Dimension",
+                "url": "https://rickandmortyapi.com/api/location/21"
+            },
             "image": "https://rickandmortyapi.com/api/character/avatar/7.jpeg",
-            "episode": ["https://rickandmortyapi.com/api/episode/10", "https://rickandmortyapi.com/api/episode/11"],
+            "episode": [
+                "https://rickandmortyapi.com/api/episode/10",
+                "https://rickandmortyapi.com/api/episode/11"
+            ],
             "url": "https://rickandmortyapi.com/api/character/7",
             "created": "2017-11-04T19:59:20.523Z"
         },
@@ -304,7 +333,10 @@
             "type": "",
             "gender": "Male",
             "origin": { "name": "unknown", "url": "" },
-            "location": { "name": "Citadel of Ricks", "url": "https://rickandmortyapi.com/api/location/3" },
+            "location": {
+                "name": "Citadel of Ricks",
+                "url": "https://rickandmortyapi.com/api/location/3"
+            },
             "image": "https://rickandmortyapi.com/api/character/avatar/8.jpeg",
             "episode": ["https://rickandmortyapi.com/api/episode/28"],
             "url": "https://rickandmortyapi.com/api/character/8",
@@ -317,7 +349,10 @@
             "species": "Human",
             "type": "",
             "gender": "Male",
-            "origin": { "name": "Earth (Replacement Dimension)", "url": "https://rickandmortyapi.com/api/location/20" },
+            "origin": {
+                "name": "Earth (Replacement Dimension)",
+                "url": "https://rickandmortyapi.com/api/location/20"
+            },
             "location": {
                 "name": "Earth (Replacement Dimension)",
                 "url": "https://rickandmortyapi.com/api/location/20"
@@ -335,7 +370,10 @@
             "type": "Superhuman (Ghost trains summoner)",
             "gender": "Male",
             "origin": { "name": "unknown", "url": "" },
-            "location": { "name": "Worldender's lair", "url": "https://rickandmortyapi.com/api/location/4" },
+            "location": {
+                "name": "Worldender's lair",
+                "url": "https://rickandmortyapi.com/api/location/4"
+            },
             "image": "https://rickandmortyapi.com/api/character/avatar/10.jpeg",
             "episode": ["https://rickandmortyapi.com/api/episode/25"],
             "url": "https://rickandmortyapi.com/api/character/10",
@@ -348,7 +386,10 @@
             "species": "Human",
             "type": "",
             "gender": "Male",
-            "origin": { "name": "Earth (C-137)", "url": "https://rickandmortyapi.com/api/location/1" },
+            "origin": {
+                "name": "Earth (C-137)",
+                "url": "https://rickandmortyapi.com/api/location/1"
+            },
             "location": {
                 "name": "Earth (Replacement Dimension)",
                 "url": "https://rickandmortyapi.com/api/location/20"
@@ -365,8 +406,14 @@
             "species": "Human",
             "type": "",
             "gender": "Male",
-            "origin": { "name": "Earth (C-137)", "url": "https://rickandmortyapi.com/api/location/1" },
-            "location": { "name": "Anatomy Park", "url": "https://rickandmortyapi.com/api/location/5" },
+            "origin": {
+                "name": "Earth (C-137)",
+                "url": "https://rickandmortyapi.com/api/location/1"
+            },
+            "location": {
+                "name": "Anatomy Park",
+                "url": "https://rickandmortyapi.com/api/location/5"
+            },
             "image": "https://rickandmortyapi.com/api/character/avatar/12.jpeg",
             "episode": ["https://rickandmortyapi.com/api/episode/3"],
             "url": "https://rickandmortyapi.com/api/character/12",
@@ -397,7 +444,10 @@
             "type": "",
             "gender": "Male",
             "origin": { "name": "unknown", "url": "" },
-            "location": { "name": "Citadel of Ricks", "url": "https://rickandmortyapi.com/api/location/3" },
+            "location": {
+                "name": "Citadel of Ricks",
+                "url": "https://rickandmortyapi.com/api/location/3"
+            },
             "image": "https://rickandmortyapi.com/api/character/avatar/14.jpeg",
             "episode": ["https://rickandmortyapi.com/api/episode/10"],
             "url": "https://rickandmortyapi.com/api/character/14",
@@ -411,7 +461,10 @@
             "type": "",
             "gender": "Male",
             "origin": { "name": "unknown", "url": "" },
-            "location": { "name": "Citadel of Ricks", "url": "https://rickandmortyapi.com/api/location/3" },
+            "location": {
+                "name": "Citadel of Ricks",
+                "url": "https://rickandmortyapi.com/api/location/3"
+            },
             "image": "https://rickandmortyapi.com/api/character/avatar/15.jpeg",
             "episode": ["https://rickandmortyapi.com/api/episode/10"],
             "url": "https://rickandmortyapi.com/api/character/15",
@@ -441,8 +494,14 @@
             "species": "Human",
             "type": "",
             "gender": "Female",
-            "origin": { "name": "Earth (C-137)", "url": "https://rickandmortyapi.com/api/location/1" },
-            "location": { "name": "Anatomy Park", "url": "https://rickandmortyapi.com/api/location/5" },
+            "origin": {
+                "name": "Earth (C-137)",
+                "url": "https://rickandmortyapi.com/api/location/1"
+            },
+            "location": {
+                "name": "Anatomy Park",
+                "url": "https://rickandmortyapi.com/api/location/5"
+            },
             "image": "https://rickandmortyapi.com/api/character/avatar/17.jpeg",
             "episode": ["https://rickandmortyapi.com/api/episode/3"],
             "url": "https://rickandmortyapi.com/api/character/17",
@@ -456,9 +515,15 @@
             "type": "Human with antennae",
             "gender": "Male",
             "origin": { "name": "unknown", "url": "" },
-            "location": { "name": "Citadel of Ricks", "url": "https://rickandmortyapi.com/api/location/3" },
+            "location": {
+                "name": "Citadel of Ricks",
+                "url": "https://rickandmortyapi.com/api/location/3"
+            },
             "image": "https://rickandmortyapi.com/api/character/avatar/18.jpeg",
-            "episode": ["https://rickandmortyapi.com/api/episode/10", "https://rickandmortyapi.com/api/episode/28"],
+            "episode": [
+                "https://rickandmortyapi.com/api/episode/10",
+                "https://rickandmortyapi.com/api/episode/28"
+            ],
             "url": "https://rickandmortyapi.com/api/character/18",
             "created": "2017-11-04T22:25:29.008Z"
         },
@@ -484,7 +549,10 @@
             "type": "Human with ants in his eyes",
             "gender": "Male",
             "origin": { "name": "unknown", "url": "" },
-            "location": { "name": "Interdimensional Cable", "url": "https://rickandmortyapi.com/api/location/6" },
+            "location": {
+                "name": "Interdimensional Cable",
+                "url": "https://rickandmortyapi.com/api/location/6"
+            },
             "image": "https://rickandmortyapi.com/api/character/avatar/20.jpeg",
             "episode": ["https://rickandmortyapi.com/api/episode/8"],
             "url": "https://rickandmortyapi.com/api/character/20",

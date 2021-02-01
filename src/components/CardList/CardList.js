@@ -1,5 +1,5 @@
-import "./CardList.scss";
-import Card from "../Card";
+import './CardList.scss';
+import Card from '../Card';
 
 const CardList = ({ characters }) => {
     const renderCharacter = (character) => <Card key={character.id} {...character}></Card>;

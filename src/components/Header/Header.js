@@ -1,7 +1,7 @@
-import "./Header.scss";
-import Search from "../Search";
-import Logo from "../../assets/rickmorty.svg";
-import { Link } from "react-router-dom";
+import './Header.scss';
+import Search from '../Search';
+import Logo from '../../assets/rickmorty.svg';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
     return (

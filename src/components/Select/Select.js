@@ -1,15 +1,19 @@
-import "./Select.scss";
-import Down from "../../assets/down.svg";
-import React, { useState } from "react";
+import './Select.scss';
+import Down from '../../assets/down.svg';
+import React, { useState } from 'react';
 
-const Select = ({label, value, options, valueHandler}) => {
+const Select = ({ label, value, options, valueHandler }) => {
     const [active, setActive] = useState(false);
     const setOption = (event) => valueHandler(event.target.textContent);
     const handleOptionClick = (event) => {
         setOption(event);
         setActive(false);
-    }
-    const renderOptions = (option) => <div key={`id-${option}`} className="Select__option" onClick={handleOptionClick}>{option}</div>
+    };
+    const renderOptions = (option) => (
+        <div key={`id-${option}`} className="Select__option" onClick={handleOptionClick}>
+            {option}
+        </div>
+    );
 
     const toggle = () => setActive(!active);
 
@@ -23,7 +27,9 @@ const Select = ({label, value, options, valueHandler}) => {
                 <img src={Down} className="Select__down" />
             </div>
 
-            <div className={`Select__dropdown Select__dropdown${active ? "_active" : "_inactive"}`}>{options.map(renderOptions)}</div>
+            <div className={`Select__dropdown Select__dropdown${active ? '_active' : '_inactive'}`}>
+                {options.map(renderOptions)}
+            </div>
         </div>
     );
 };
