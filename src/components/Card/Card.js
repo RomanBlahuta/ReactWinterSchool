@@ -5,7 +5,7 @@ import LabelValue from '../LabelValue';
 import { Link } from 'react-router-dom';
 import { PropTypes } from 'prop-types';
 import { httpGet } from '../../util/request';
-import { useState, useEffect } from "react";
+import { useState, useEffect } from 'react';
 
 const Card = ({
     id,
@@ -21,17 +21,16 @@ const Card = ({
     url,
     created,
 }) => {
-
-    const [firstSeen, setFirstSeen] = useState("Loading...");
+    const [firstSeen, setFirstSeen] = useState('Loading...');
 
     useEffect(() => {
         loadFirstSeen();
-    }, [])
+    }, []);
 
     const loadFirstSeen = async () => {
         let epObj = await httpGet(episode[0]);
         setFirstSeen(`${epObj.episode}: ${epObj.name}`);
-    }
+    };
 
     return (
         <div className="Card">
@@ -51,11 +50,8 @@ const Card = ({
                     <Tag text={gender} />
                 </div>
 
-                <LabelValue label="Last known location" values={[location.name]}></LabelValue>
-                <LabelValue
-                    label="First appeared in"
-                    values={[firstSeen]}
-                ></LabelValue>
+                <LabelValue label="Last known location" values={[location.name]} />
+                <LabelValue label="First appeared in" values={[firstSeen]} />
             </div>
         </div>
     );

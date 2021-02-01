@@ -38,9 +38,13 @@ function Home() {
         loadCharacters(currentApiPage);
     }, []);
 
+    useEffect(() => {
+        loadCharacters(currentApiPage);
+    }, [currentApiPage]);
+
     const loadCharacters = async (page) => {
         const items = await getCharacters(page);
-        setCharacters(items?.results);
+        setCharacters(characters.concat(items?.results));
         setPerApiPage(characters?.length);
         setApiTotal(items?.info.count);
         setApiPageCount(items?.info.pages);
@@ -51,7 +55,7 @@ function Home() {
             actives[5] = 'inactive';
             actives[1] = 'active';
             setCurrentActive(1);
-            let newPages = pages.map((page) => page + 5); //todo support not divisible by 5 last page number
+            let newPages = pages.map((page) => page + 5);
             //todo check for last page and last API entry
             setPages(newPages);
         } else {
@@ -62,6 +66,9 @@ function Home() {
 
         setFirst(first + 4);
         setLast(last + 4);
+        if (last + 4 >= characters.length - 1) {
+            setCurrentApiPage(currentApiPage + 1);
+        }
     };
 
     const handleClickPrevious = () => {
@@ -128,7 +135,7 @@ function Home() {
             </div>
 
             <div className="Home__resultContainer">
-                <CardList characters={characters ? characters.slice(first, last) : []}></CardList>
+                <CardList characters={characters ? characters.slice(first, last) : []} />
             </div>
 
             <Pagination

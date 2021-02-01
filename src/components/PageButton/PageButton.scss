@@ -13,20 +13,15 @@
     &__inactive {
         background: #2a2a42;
         color: white;
-    }
 
-    &__inactive:hover {
-        background: white;
-        color: #2a2a42;
+        &:hover {
+            background: white;
+            color: #2a2a42;
+        }
     }
 
     &__active {
         color: #2a2a42;
         background: white;
-    }
-
-    &__active:hover {
-        background: #2a2a42;
-        color: white;
     }
 }

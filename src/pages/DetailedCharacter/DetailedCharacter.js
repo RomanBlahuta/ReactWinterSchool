@@ -2,29 +2,30 @@ import './DetailedCharacter.scss';
 import Tag from '../../components/Tag';
 import LabelValue from '../../components/LabelValue';
 import { NavLink, useParams } from 'react-router-dom';
-import {httpGet, getCharacter, httpGetSync} from '../../util/request';
-import { useState, useEffect } from "react";
+import { httpGet, getCharacter } from '../../util/request';
+import { useState, useEffect } from 'react';
 
 const DetailedCharacter = () => {
     const { id } = useParams();
     const [characterInfo, setCharacterInfo] = useState({
-        name: "Loading...",
-        status: "Loading...",
-        species: "Loading...",
-        type: "Loading...",
-        gender: "Loading...",
-        origin: "Loading...",
-        location: {name: "Loading...", url: "Loading..."},
-        image: "",
+        name: 'Loading...',
+        status: 'Loading...',
+        species: 'Loading...',
+        type: 'Loading...',
+        gender: 'Loading...',
+        origin: 'Loading...',
+        location: { name: 'Loading...', url: 'Loading...' },
+        image: '',
         episode: [],
-        url: "Loading...",
-        created: "Loading..."
+        url: 'Loading...',
+        created: 'Loading...',
     });
 
-    const [episodes, setEpisodes] = useState(["Loading..."]);
-    const [episodeNames, setEpisodeNames] = useState(["Loading..."]);
+    const [episodes, setEpisodes] = useState(['Loading...']);
+    const [episodeNames, setEpisodeNames] = useState(['Loading...']);
 
-    const { name, status, species, type, gender, origin, location, image, episode, url, created } = characterInfo || {};
+    const { name, status, species, type, gender, origin, location, image, episode, url, created } =
+        characterInfo || {};
 
     useEffect(() => {
         loadCharacter(id);
@@ -32,12 +33,12 @@ const DetailedCharacter = () => {
 
     useEffect(() => {
         loadEpisodes();
-    }, [])
+    }, []);
 
     const loadCharacter = async (charId) => {
         const item = await getCharacter(charId);
         setCharacterInfo(item);
-    }
+    };
 
     const extractEpisodeName = (episodeObject) => `${episodeObject.episode}: ${episodeObject.name}`;
 
@@ -98,24 +99,15 @@ const DetailedCharacter = () => {
 
                         <div className="DetailedCharacter__mainInfo">
                             <div className="DetailedCharacter__col">
-                                <LabelValue label="Species" values={[species]}></LabelValue>
-                                <LabelValue label="Origin" values={[origin.name]}></LabelValue>
-                                <LabelValue label="Birthday" values={[created]}></LabelValue>
-                                <LabelValue
-                                    label="Last Known Location"
-                                    values={[location.name]}
-                                ></LabelValue>
-                                <LabelValue
-                                    label="First seen in"
-                                    values={[episodeNames[0]]}
-                                ></LabelValue>
+                                <LabelValue label="Species" values={[species]} />
+                                <LabelValue label="Origin" values={[origin.name]} />
+                                <LabelValue label="Birthday" values={[created]} />
+                                <LabelValue label="Last Known Location" values={[location.name]} />
+                                <LabelValue label="First seen in" values={[episodeNames[0]]} />
                             </div>
 
                             <div className="DetailedCharacter__col">
-                                <LabelValue
-                                    label="Episodes"
-                                    values={episodeNames}
-                                ></LabelValue>
+                                <LabelValue label="Episodes" values={episodeNames} />
                             </div>
                         </div>
                     </div>

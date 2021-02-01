@@ -4,7 +4,6 @@ import DetailedCharacter from './pages/DetailedCharacter';
 import Header from './components/Header';
 
 const Router = () => {
-
     return (
         <BrowserRouter>
             <Switch>

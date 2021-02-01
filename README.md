@@ -2,7 +2,7 @@
 
 ## Description
 
-This site is a UI wrapper around the [Rick and Morty API](https://rickandmortyapi.com/). 
+This site is a UI wrapper around the [Rick and Morty API](https://rickandmortyapi.com/).
 
 This website provides a comfortable way to look up information on your favourite **Rick and Morty** characters and episodes in the API's database. You can filter the character list based on characters' names, gender and status(Alive, Dead etc.). Created with [ReactJS](https://reactjs.org/).
 

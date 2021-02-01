@@ -17,7 +17,7 @@ export const getCharacter = async (id) => {
 
 export function httpGetSync(theUrl) {
     let xmlHttp = new XMLHttpRequest();
-    xmlHttp.open("GET", theUrl, false);
+    xmlHttp.open('GET', theUrl, false);
     xmlHttp.send(null);
     return xmlHttp.responseText;
 }
