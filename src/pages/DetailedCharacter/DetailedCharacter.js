@@ -80,7 +80,7 @@ const DetailedCharacter = () => {
                     </span>
                 </p>
 
-                <div className="break"></div>
+                <div className="break" />
 
                 <div className="DetailedCharacter__container">
                     <div className="DetailedCharacter__image">

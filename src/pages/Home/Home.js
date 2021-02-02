@@ -7,6 +7,7 @@ import React, { useState, useEffect } from 'react';
 import { getCharacters } from '../../util/request';
 import Pagination from '../../components/Pagination';
 import DynamicQuote from '../../components/DynamicQuote';
+import _ from 'lodash';
 
 function Home() {
     const [first, setFirst] = useState(0);
@@ -22,6 +23,7 @@ function Home() {
         5: 'inactive',
     });
     const [characters, setCharacters] = useState([]);
+    const [charactersUnfiltered, setCharactersUnfiltered] = useState([]);
 
     const [currentApiPage, setCurrentApiPage] = useState(1);
     const [perApiPage, setPerApiPage] = useState(0);
@@ -42,15 +44,42 @@ function Home() {
         loadCharacters(currentApiPage);
     }, [currentApiPage]);
 
+    useEffect(() => {
+        filterCharacters(charactersUnfiltered);
+    }, [statusFilter, genderFilter, charactersUnfiltered]);
+
     const loadCharacters = async (page) => {
         const items = await getCharacters(page);
         setCharacters(characters.concat(items?.results));
+        setCharactersUnfiltered(charactersUnfiltered.concat(items?.results));
         setPerApiPage(characters?.length);
         setApiTotal(items?.info.count);
         setApiPageCount(items?.info.pages);
     };
 
+    const filterCharacters = (characters) => {
+        let result = [...characters];
+        console.log('before', result);
+        if (statusFilter !== 'All statuses') {
+            result = result.filter((character) => character.status === statusFilter);
+            console.log('status filter');
+        }
+        if (genderFilter !== 'All genders') {
+            result = result.filter((character) => character.gender === genderFilter);
+            console.log('gender filter');
+        }
+
+        console.log('after', result);
+
+        setCharacters(result);
+    };
+
     const handleClickNext = () => {
+        //todo test
+        if (currentApiPage > apiPageCount) {
+            return;
+        }
+
         if (currentActive === 5) {
             actives[5] = 'inactive';
             actives[1] = 'active';
