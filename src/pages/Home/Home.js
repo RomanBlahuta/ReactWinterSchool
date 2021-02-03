@@ -7,132 +7,83 @@ import React, { useState, useEffect } from 'react';
 import { getCharacters } from '../../util/request';
 import Pagination from '../../components/Pagination';
 import DynamicQuote from '../../components/DynamicQuote';
-import _ from 'lodash';
 
 function Home() {
-    const [first, setFirst] = useState(0);
-    const [last, setLast] = useState(4);
-
-    const [currentActive, setCurrentActive] = useState(1);
-    const [pages, setPages] = useState([1, 2, 3, 4, 5]);
-    const [actives, setActives] = useState({
-        1: 'active',
-        2: 'inactive',
-        3: 'inactive',
-        4: 'inactive',
-        5: 'inactive',
-    });
     const [characters, setCharacters] = useState([]);
     const [charactersUnfiltered, setCharactersUnfiltered] = useState([]);
 
-    const [currentApiPage, setCurrentApiPage] = useState(1);
-    const [perApiPage, setPerApiPage] = useState(0);
-    const [apiTotal, setApiTotal] = useState(0);
-    const [apiPageCount, setApiPageCount] = useState(0);
+    const [currentActive, setCurrentActive] = useState(1);
+    const [pages, setPages] = useState([]);
 
     const statuses = ['All statuses', 'Alive', 'Dead', 'unknown'];
     const genders = ['All genders', 'Male', 'Female', 'unknown', 'Genderless'];
-
     const [statusFilter, setStatusFilter] = useState('All statuses');
     const [genderFilter, setGenderFilter] = useState('All genders');
+    const [apiPagesTotal, setApiPagesTotal] = useState(0);
 
+    const canGoBack = currentActive !== 1;
+    const canGoForward = currentActive !== apiPagesTotal;
+
+    const [currentSlice, setCurrentSlice] = useState(1);
+    const pageSliceFirst = 5 * (currentSlice - 1);
+    const pageSliceLast = 5 * currentSlice;
+    const pagesSlice = pages.slice(pageSliceFirst, pageSliceLast);
+
+    // Initial character load
     useEffect(() => {
-        loadCharacters(currentApiPage);
+        loadCharacters(currentActive).then((r) => r);
     }, []);
 
     useEffect(() => {
-        loadCharacters(currentApiPage);
-    }, [currentApiPage]);
+        loadCharacters(currentActive).then((r) => r);
+    }, [currentActive]);
 
+    // If filter specified -> filter characters
     useEffect(() => {
         filterCharacters(charactersUnfiltered);
     }, [statusFilter, genderFilter, charactersUnfiltered]);
 
     const loadCharacters = async (page) => {
         const items = await getCharacters(page);
-        setCharacters(characters.concat(items?.results));
-        setCharactersUnfiltered(charactersUnfiltered.concat(items?.results));
-        setPerApiPage(characters?.length);
-        setApiTotal(items?.info.count);
-        setApiPageCount(items?.info.pages);
+        setCharacters(items?.results);
+        setCharactersUnfiltered(items?.results);
+        setApiPagesTotal(items?.info.pages);
+        setPages([...Array(items?.info.pages).keys()].map((x) => x + 1));
     };
 
     const filterCharacters = (characters) => {
         let result = [...characters];
-        console.log('before', result);
         if (statusFilter !== 'All statuses') {
-            result = result.filter((character) => character.status === statusFilter);
-            console.log('status filter');
+            result = result.filter(
+                (character) => character.status === statusFilter
+            );
         }
         if (genderFilter !== 'All genders') {
-            result = result.filter((character) => character.gender === genderFilter);
-            console.log('gender filter');
+            result = result.filter(
+                (character) => character.gender === genderFilter
+            );
         }
-
-        console.log('after', result);
-
         setCharacters(result);
     };
 
     const handleClickNext = () => {
-        //todo test
-        if (currentApiPage > apiPageCount) {
-            return;
+        if (currentActive % 5 === 0) {
+            setCurrentSlice(currentSlice + 1);
         }
 
-        if (currentActive === 5) {
-            actives[5] = 'inactive';
-            actives[1] = 'active';
-            setCurrentActive(1);
-            let newPages = pages.map((page) => page + 5);
-            //todo check for last page and last API entry
-            setPages(newPages);
-        } else {
-            actives[currentActive] = 'inactive';
-            actives[currentActive + 1] = 'active';
-            setCurrentActive(currentActive + 1);
-        }
-
-        setFirst(first + 4);
-        setLast(last + 4);
-        if (last + 4 >= characters.length - 1) {
-            setCurrentApiPage(currentApiPage + 1);
-        }
+        setCurrentActive(currentActive + 1);
     };
 
     const handleClickPrevious = () => {
-        if (currentActive === 1) {
-            if (pages[0] !== 1) {
-                actives[1] = 'inactive';
-                actives[5] = 'active';
-                setCurrentActive(5);
-                setPages(pages.map((page) => page - 5));
-
-                setFirst(first - 4);
-                setLast(last - 4);
-            } else {
-                alert('Reached 1st page.');
-            }
-        } else {
-            actives[currentActive] = 'inactive';
-            actives[currentActive - 1] = 'active';
-            setCurrentActive(currentActive - 1);
-
-            setFirst(first - 4);
-            setLast(last - 4);
+        if (currentActive % 5 === 1) {
+            setCurrentSlice(currentSlice - 1);
         }
+        setCurrentActive(currentActive - 1);
     };
 
     const handleClickPageNumber = (event) => {
-        setFirst(4 * (Number(event.target.textContent) - 1));
-        setLast(4 * Number(event.target.textContent));
-
-        actives[currentActive] = 'inactive';
-        const clicked =
-            Number(event.target.textContent) % 5 === 0 ? 5 : Number(event.target.textContent) % 5;
-        actives[clicked] = 'active';
-
-        setCurrentActive(clicked);
+        const updatedPage = Number(event.target.textContent);
+        setCurrentActive(updatedPage);
     };
 
     return (
@@ -164,15 +115,17 @@ function Home() {
             </div>
 
             <div className="Home__resultContainer">
-                <CardList characters={characters ? characters.slice(first, last) : []} />
+                <CardList characters={characters ? characters : []} />
             </div>
 
             <Pagination
                 handleClickPrevious={handleClickPrevious}
                 handleClickPageNumber={handleClickPageNumber}
                 handleClickNext={handleClickNext}
-                actives={actives}
-                pages={pages}
+                active={currentActive}
+                pages={pagesSlice}
+                goBack={canGoBack}
+                goForward={canGoForward}
             />
         </div>
     );

@@ -24,8 +24,19 @@ const DetailedCharacter = () => {
     const [episodes, setEpisodes] = useState(['Loading...']);
     const [episodeNames, setEpisodeNames] = useState(['Loading...']);
 
-    const { name, status, species, type, gender, origin, location, image, episode, url, created } =
-        characterInfo || {};
+    const {
+        name,
+        status,
+        species,
+        type,
+        gender,
+        origin,
+        location,
+        image,
+        episode,
+        url,
+        created,
+    } = characterInfo || {};
 
     useEffect(() => {
         loadCharacter(id);
@@ -40,7 +51,8 @@ const DetailedCharacter = () => {
         setCharacterInfo(item);
     };
 
-    const extractEpisodeName = (episodeObject) => `${episodeObject.episode}: ${episodeObject.name}`;
+    const extractEpisodeName = (episodeObject) =>
+        `${episodeObject.episode}: ${episodeObject.name}`;
 
     const loadEpisodes = async (episodes) => {
         const item = await getCharacter(id);
@@ -84,7 +96,11 @@ const DetailedCharacter = () => {
 
                 <div className="DetailedCharacter__container">
                     <div className="DetailedCharacter__image">
-                        <img src={image} alt="Loading..." className="DetailedCharacter__itemImg" />
+                        <img
+                            src={image}
+                            alt="Loading..."
+                            className="DetailedCharacter__itemImg"
+                        />
                     </div>
 
                     <div className="DetailedCharacter__description">
@@ -99,15 +115,33 @@ const DetailedCharacter = () => {
 
                         <div className="DetailedCharacter__mainInfo">
                             <div className="DetailedCharacter__col">
-                                <LabelValue label="Species" values={[species]} />
-                                <LabelValue label="Origin" values={[origin.name]} />
-                                <LabelValue label="Birthday" values={[created]} />
-                                <LabelValue label="Last Known Location" values={[location.name]} />
-                                <LabelValue label="First seen in" values={[episodeNames[0]]} />
+                                <LabelValue
+                                    label="Species"
+                                    values={[species]}
+                                />
+                                <LabelValue
+                                    label="Origin"
+                                    values={[origin.name]}
+                                />
+                                <LabelValue
+                                    label="Birthday"
+                                    values={[created]}
+                                />
+                                <LabelValue
+                                    label="Last Known Location"
+                                    values={[location.name]}
+                                />
+                                <LabelValue
+                                    label="First seen in"
+                                    values={[episodeNames[0]]}
+                                />
                             </div>
 
                             <div className="DetailedCharacter__col">
-                                <LabelValue label="Episodes" values={episodeNames} />
+                                <LabelValue
+                                    label="Episodes"
+                                    values={episodeNames}
+                                />
                             </div>
                         </div>
                     </div>

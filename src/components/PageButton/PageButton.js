@@ -1,8 +1,14 @@
 import './PageButton.scss';
 
-const PageButton = ({ children, active, action }) => {
+const PageButton = ({ children, active, action, disabled }) => {
     return (
-        <div className={`PageButton PageButton__${active}`} onClick={action}>
+        <div
+            className={
+                'PageButton ' +
+                (disabled ? 'PageButton__disabled' : `PageButton__${active}`)
+            }
+            onClick={action}
+        >
             {children}
         </div>
     );
