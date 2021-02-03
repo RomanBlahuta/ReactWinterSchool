@@ -7,6 +7,7 @@ import React, { useState, useEffect } from 'react';
 import { getCharacters } from '../../util/request';
 import Pagination from '../../components/Pagination';
 import DynamicQuote from '../../components/DynamicQuote';
+import { PAGE_DISPLAY_NUMBER } from "../../util/consts";
 
 function Home() {
     const [characters, setCharacters] = useState([]);
@@ -25,8 +26,8 @@ function Home() {
     const canGoForward = currentActive !== apiPagesTotal;
 
     const [currentSlice, setCurrentSlice] = useState(1);
-    const pageSliceFirst = 5 * (currentSlice - 1);
-    const pageSliceLast = 5 * currentSlice;
+    const pageSliceFirst = PAGE_DISPLAY_NUMBER * (currentSlice - 1);
+    const pageSliceLast = PAGE_DISPLAY_NUMBER * currentSlice;
     const pagesSlice = pages.slice(pageSliceFirst, pageSliceLast);
 
     // Initial character load
