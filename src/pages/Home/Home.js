@@ -7,7 +7,7 @@ import React, { useState, useEffect } from 'react';
 import { getCharacters } from '../../util/request';
 import Pagination from '../../components/Pagination';
 import DynamicQuote from '../../components/DynamicQuote';
-import { PAGE_DISPLAY_NUMBER } from "../../util/consts";
+import { PAGE_DISPLAY_NUMBER } from '../../util/consts';
 
 function Home() {
     const [characters, setCharacters] = useState([]);
@@ -20,6 +20,7 @@ function Home() {
     const genders = ['All genders', 'Male', 'Female', 'unknown', 'Genderless'];
     const [statusFilter, setStatusFilter] = useState('All statuses');
     const [genderFilter, setGenderFilter] = useState('All genders');
+    const [characterName, setCharacterName] = useState('');
     const [apiPagesTotal, setApiPagesTotal] = useState(0);
 
     const canGoBack = currentActive !== 1;
@@ -32,24 +33,35 @@ function Home() {
 
     // Initial character load
     useEffect(() => {
-        loadCharacters(currentActive).then((r) => r);
+        loadCharacters(
+            currentActive,
+            genderFilter,
+            statusFilter,
+            characterName
+        ).then((r) => r);
     }, []);
 
+    // Loads corresponding characters if filters or the current page have changed
     useEffect(() => {
-        loadCharacters(currentActive).then((r) => r);
-    }, [currentActive]);
+        loadCharacters(
+            currentActive,
+            genderFilter,
+            statusFilter,
+            characterName
+        ).then((r) => r);
+    }, [currentActive, statusFilter, genderFilter, characterName]);
 
-    // If filter specified -> filter characters
+    // Sets the current page to be the first one if the character list was filtered
     useEffect(() => {
-        filterCharacters(charactersUnfiltered);
-    }, [statusFilter, genderFilter, charactersUnfiltered]);
+        setCurrentActive(1);
+    }, [statusFilter, genderFilter, characterName]);
 
-    const loadCharacters = async (page) => {
-        const items = await getCharacters(page);
+    const loadCharacters = async (page, gender, status, name) => {
+        const items = await getCharacters(page, gender, status, name);
         setCharacters(items?.results);
         setCharactersUnfiltered(items?.results);
-        setApiPagesTotal(items?.info.pages);
-        setPages([...Array(items?.info.pages).keys()].map((x) => x + 1));
+        setApiPagesTotal(items?.info?.pages);
+        setPages([...Array(items?.info?.pages).keys()].map((x) => x + 1));
     };
 
     const filterCharacters = (characters) => {

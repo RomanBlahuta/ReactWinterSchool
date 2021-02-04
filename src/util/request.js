@@ -5,8 +5,21 @@ export async function httpGet(theUrl) {
     return response.json();
 }
 
-export const getCharacters = async (page) => {
-    const response = await fetch(`${SERVER_URL}/character?page=${page}`);
+export const getCharacters = async (page, gender, status, name) => {
+    let requestUrl = `${SERVER_URL}/character?page=${page}`;
+
+    if (gender !== 'All genders' && gender) {
+        requestUrl += `&gender=${gender}`;
+    }
+    if (status !== 'All statuses' && status) {
+        requestUrl += `&status=${status}`;
+    }
+    if (name) {
+        requestUrl += `&name=${name}`;
+    }
+
+    console.log(requestUrl);
+    const response = await fetch(requestUrl);
     return response.json();
 };
 
@@ -14,10 +27,3 @@ export const getCharacter = async (id) => {
     const response = await fetch(`${SERVER_URL}/character/${id}`);
     return response.json();
 };
-
-export function httpGetSync(theUrl) {
-    let xmlHttp = new XMLHttpRequest();
-    xmlHttp.open('GET', theUrl, false);
-    xmlHttp.send(null);
-    return xmlHttp.responseText;
-}
