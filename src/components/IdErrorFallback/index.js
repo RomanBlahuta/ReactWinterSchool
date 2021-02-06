@@ -1,1 +1,1 @@
-export { default } from "./IdErrorFallback";
+export { default } from './IdErrorFallback';

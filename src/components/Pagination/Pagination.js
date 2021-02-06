@@ -3,13 +3,13 @@ import Left from '../../assets/left.svg';
 import Right from '../../assets/right.svg';
 import PageButton from '../PageButton';
 import { PAGE_DISPLAY_NUMBER } from '../../util/consts';
-import {useState} from "react";
+import { useState } from 'react';
 
 const Pagination = ({
     pages,
     currentActive,
     apiPagesTotal,
-    setCurrentActive
+    setCurrentActive,
 }) => {
     const indexes = [...Array(5).keys()];
 
@@ -45,7 +45,11 @@ const Pagination = ({
         pagesSlice[pageNum] ? (
             <PageButton
                 key={pageNum}
-                active={pagesSlice[pageNum] === currentActive ? 'active' : 'inactive'}
+                active={
+                    pagesSlice[pageNum] === currentActive
+                        ? 'active'
+                        : 'inactive'
+                }
                 disabled={false}
                 action={handleClickPageNumber}
             >

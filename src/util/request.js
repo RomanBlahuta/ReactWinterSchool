@@ -24,3 +24,8 @@ export const getCharacter = async (id) => {
     const response = await fetch(`${SERVER_URL}/character/${id}`);
     return response.json();
 };
+
+export const getEpisode = async (id) => {
+    const response = await fetch(`${SERVER_URL}/episode/${id}`);
+    return response.json();
+};

@@ -1,1 +1,1 @@
-export { default } from "./DetailedEpisode.scss";
+export { default } from './DetailedEpisode.scss';

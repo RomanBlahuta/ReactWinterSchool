@@ -1,10 +1,8 @@
 import './Search.scss';
 import SearchIcon from '../../assets/search.svg';
-import _ from "lodash";
+import _ from 'lodash';
 
 const Search = ({ className, setName }) => {
-
-
     const changeName = (event) => {
         setName(event.target.value);
     };

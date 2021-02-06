@@ -14,4 +14,19 @@
         line-height: 19px;
         color: white;
     }
+
+    &__link {
+        margin-top: 0px;
+        font-size: 16px;
+        line-height: 19px;
+        color: white;
+        text-decoration: none;
+        display: block;
+        margin-bottom: 10px;
+
+        &:hover {
+            color: var(--cta);
+            cursor: pointer;
+        }
+    }
 }

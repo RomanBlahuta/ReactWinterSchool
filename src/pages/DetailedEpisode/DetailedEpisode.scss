@@ -1,3 +1,104 @@
 .DetailedEpisode {
-  
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    &__episodeBg {
+        width: 300px;
+        height: 300px;
+        background-color: #9598b8;
+        color: white;
+        border-radius: 12px;
+        text-align: center;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 50px;
+    }
+
+    &__paginationContainer {
+        width: 100%;
+        text-align: center;
+    }
+
+    &__container {
+        padding: 40px;
+        width: 1200px;
+        background: #2a2a42;
+        border-radius: 12px;
+        margin-top: 30px;
+        display: flex;
+        justify-content: start;
+        margin-bottom: 40px;
+    }
+
+    &__link {
+        text-decoration: none;
+
+        &:hover {
+            color: rgba(63, 139, 253, 1);
+        }
+    }
+
+    &__activeLink {
+        color: rgba(255, 255, 255, 0.5);
+    }
+
+    &__image {
+        margin-right: 40px;
+    }
+
+    &__headName {
+        font-size: 56px;
+        font-weight: bold;
+        color: white;
+    }
+
+    &__tagList {
+        display: flex;
+        justify-content: start;
+        align-items: center;
+    }
+
+    &__mainInfo {
+        display: flex;
+        justify-content: start;
+        align-items: start;
+        margin-top: 40px;
+    }
+
+    &__col {
+        width: 50%;
+    }
+
+    &__navText {
+        margin-top: 60px;
+        font-weight: bold;
+        font-size: 20px;
+
+        &Container {
+            display: flex;
+            justify-content: start;
+            width: 1250px;
+        }
+    }
+
+    &__home {
+        color: var(--cta);
+    }
+
+    &__itemName {
+        color: rgba(255, 255, 255, 0.3);
+    }
+
+    &__itemImg {
+        margin-top: 20px;
+        border-radius: 12px;
+    }
+}
+
+.break {
+    flex-basis: 100%;
+    height: 0;
 }
