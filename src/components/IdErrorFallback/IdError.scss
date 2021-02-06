@@ -1,0 +1,52 @@
+.IdErrorFallback {
+
+  &__header {
+    display: flex;
+    justify-content: center;
+    background-color: white;
+    padding: 15px 0;
+    width: 100%;
+  }
+
+  &__logo {
+    width: 300px;
+  }
+
+  &__errorText {
+    margin-top: 30px;
+    text-align: center;
+    color: white;
+  }
+
+  &__content {
+    display: flex;
+    justify-content: center;
+    padding-top: 80px;
+
+  }
+
+  &__info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  &__goHome {
+    margin-top: 30px;
+    text-align: center;
+    color: var(--cta);
+    text-decoration: none;
+    font-size: 24px;
+    font-weight: bold;
+
+    &:hover {
+      color: white;
+    }
+  }
+}
+
+.break {
+  flex-basis: 100%;
+  height: 0;
+}

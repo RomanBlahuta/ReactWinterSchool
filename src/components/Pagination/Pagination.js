@@ -2,27 +2,54 @@ import './Pagination.scss';
 import Left from '../../assets/left.svg';
 import Right from '../../assets/right.svg';
 import PageButton from '../PageButton';
+import { PAGE_DISPLAY_NUMBER } from '../../util/consts';
+import {useState} from "react";
 
 const Pagination = ({
-    handleClickPrevious,
-    handleClickPageNumber,
-    handleClickNext,
     pages,
-    active,
-    goBack,
-    goForward,
+    currentActive,
+    apiPagesTotal,
+    setCurrentActive
 }) => {
     const indexes = [...Array(5).keys()];
 
+    const goBack = currentActive !== 1;
+    const goForward = currentActive !== apiPagesTotal;
+
+    const [currentSlice, setCurrentSlice] = useState(1);
+    const pageSliceFirst = PAGE_DISPLAY_NUMBER * (currentSlice - 1);
+    const pageSliceLast = PAGE_DISPLAY_NUMBER * currentSlice;
+    const pagesSlice = pages.slice(pageSliceFirst, pageSliceLast);
+
+    const handleClickNext = () => {
+        if (currentActive % 5 === 0) {
+            setCurrentSlice(currentSlice + 1);
+        }
+
+        setCurrentActive(currentActive + 1);
+    };
+
+    const handleClickPrevious = () => {
+        if (currentActive % 5 === 1) {
+            setCurrentSlice(currentSlice - 1);
+        }
+        setCurrentActive(currentActive - 1);
+    };
+
+    const handleClickPageNumber = (event) => {
+        const updatedPage = Number(event.target.textContent);
+        setCurrentActive(updatedPage);
+    };
+
     const renderNumbers = (pageNum) =>
-        pages[pageNum] ? (
+        pagesSlice[pageNum] ? (
             <PageButton
                 key={pageNum}
-                active={pages[pageNum] === active ? 'active' : 'inactive'}
+                active={pagesSlice[pageNum] === currentActive ? 'active' : 'inactive'}
                 disabled={false}
                 action={handleClickPageNumber}
             >
-                <span>{pages[pageNum]}</span>
+                <span>{pagesSlice[pageNum]}</span>
             </PageButton>
         ) : (
             ''

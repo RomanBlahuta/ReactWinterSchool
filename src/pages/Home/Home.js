@@ -7,7 +7,6 @@ import React, { useState, useEffect } from 'react';
 import { getCharacters } from '../../util/request';
 import Pagination from '../../components/Pagination';
 import DynamicQuote from '../../components/DynamicQuote';
-import { PAGE_DISPLAY_NUMBER } from '../../util/consts';
 
 function Home() {
     const [characters, setCharacters] = useState([]);
@@ -21,14 +20,6 @@ function Home() {
     const [genderFilter, setGenderFilter] = useState('All genders');
     const [characterName, setCharacterName] = useState('');
     const [apiPagesTotal, setApiPagesTotal] = useState(0);
-
-    const canGoBack = currentActive !== 1;
-    const canGoForward = currentActive !== apiPagesTotal;
-
-    const [currentSlice, setCurrentSlice] = useState(1);
-    const pageSliceFirst = PAGE_DISPLAY_NUMBER * (currentSlice - 1);
-    const pageSliceLast = PAGE_DISPLAY_NUMBER * currentSlice;
-    const pagesSlice = pages.slice(pageSliceFirst, pageSliceLast);
 
     // Initial character load
     useEffect(() => {
@@ -60,26 +51,6 @@ function Home() {
         setCharacters(items?.results);
         setApiPagesTotal(items?.info?.pages);
         setPages([...Array(items?.info?.pages).keys()].map((x) => x + 1));
-    };
-
-    const handleClickNext = () => {
-        if (currentActive % 5 === 0) {
-            setCurrentSlice(currentSlice + 1);
-        }
-
-        setCurrentActive(currentActive + 1);
-    };
-
-    const handleClickPrevious = () => {
-        if (currentActive % 5 === 1) {
-            setCurrentSlice(currentSlice - 1);
-        }
-        setCurrentActive(currentActive - 1);
-    };
-
-    const handleClickPageNumber = (event) => {
-        const updatedPage = Number(event.target.textContent);
-        setCurrentActive(updatedPage);
     };
 
     return (
@@ -115,13 +86,10 @@ function Home() {
             </div>
 
             <Pagination
-                handleClickPrevious={handleClickPrevious}
-                handleClickPageNumber={handleClickPageNumber}
-                handleClickNext={handleClickNext}
-                active={currentActive}
-                pages={pagesSlice}
-                goBack={canGoBack}
-                goForward={canGoForward}
+                currentActive={currentActive}
+                pages={pages}
+                apiPagesTotal={apiPagesTotal}
+                setCurrentActive={setCurrentActive}
             />
         </div>
     );

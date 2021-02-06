@@ -2,16 +2,22 @@ import './DetailedCharacter.scss';
 import Tag from '../../components/Tag';
 import LabelValue from '../../components/LabelValue';
 import { NavLink, useParams } from 'react-router-dom';
-import { httpGet, getCharacter } from '../../util/request';
+import {httpGet, getCharacter, getCharacters} from '../../util/request';
 import React, { useState, useEffect, Fragment } from 'react';
 import Header from "../../components/Header";
 import CardList from "../../components/CardList";
+import Pagination from "../../components/Pagination";
+import IdErrorFallback from "../../components/IdErrorFallback";
 
 const DetailedCharacter = () => {
     const { id } = useParams();
 
     const [characters, setCharacters] = useState([]);
     const [characterName, setCharacterName] = useState("");
+
+    const [currentActive, setCurrentActive] = useState(1);
+    const [pages, setPages] = useState([]);
+    const [apiPagesTotal, setApiPagesTotal] = useState(0);
 
     const [characterInfo, setCharacterInfo] = useState({
         name: 'Loading...',
@@ -25,6 +31,7 @@ const DetailedCharacter = () => {
         episode: [],
         url: 'Loading...',
         created: 'Loading...',
+        error: undefined
     });
 
     const [episodes, setEpisodes] = useState(['Loading...']);
@@ -34,22 +41,16 @@ const DetailedCharacter = () => {
         name,
         status,
         species,
-        type,
         gender,
         origin,
         location,
         image,
-        episode,
-        url,
         created,
+        error
     } = characterInfo || {};
 
     useEffect(() => {
-        loadCharacter(id);
-    }, []);
-
-    useEffect(() => {
-        loadEpisodes();
+        loadCharacter(id).then(r => r);
     }, []);
 
     const loadCharacter = async (charId) => {
@@ -57,14 +58,18 @@ const DetailedCharacter = () => {
         setCharacterInfo(item);
     };
 
+    useEffect(() => {
+        loadEpisodes().then(r => r);
+    }, []);
+
     const extractEpisodeName = (episodeObject) =>
         `${episodeObject.episode}: ${episodeObject.name}`;
 
-    const loadEpisodes = async (episodes) => {
+    const loadEpisodes = async () => {
         const item = await getCharacter(id);
 
         let episodeObjects = [];
-        for (const ep of item.episode) {
+        for (const ep of item.episode ? item.episode : []) {
             const episodeData = await httpGet(ep);
             episodeObjects.push(episodeData);
         }
@@ -73,20 +78,41 @@ const DetailedCharacter = () => {
         setEpisodeNames(episodeObjects.map(extractEpisodeName));
     };
 
-    /*useEffect(() => {
+    const loadCharacters = async (page, gender, status, name) => {
+        const items = await getCharacters(page, gender, status, name);
+        setCharacters(items?.results);
+        setApiPagesTotal(items?.info?.pages);
+        setPages([...Array(items?.info?.pages).keys()].map((x) => x + 1));
+    };
+
+    useEffect(() => {
         loadCharacters(
             currentActive,
-            genderFilter,
-            statusFilter,
+            "All genders",
+            "All statuses",
             characterName
         ).then((r) => r);
-    }, [currentActive, statusFilter, genderFilter, characterName]);*/
+    }, [currentActive, characterName]);
 
-    return characterInfo ? (
+    useEffect(() => {
+        setCurrentActive(1);
+    }, [characterName]);
+
+    return !error ? (
         <div>
-            <Header setName={setCharacterName}></Header>
+            <Header setName={setCharacterName} />
             <div className="DetailedCharacter">
-                {characterName ? <CardList characters={characters ? characters : []} /> :
+                {characterName ? <Fragment>
+                        <CardList characters={characters ? characters : []} />
+                        <div className="DetailedCharacter__paginationContainer">
+                            <Pagination
+                                apiPagesTotal={apiPagesTotal}
+                                currentActive={currentActive}
+                                pages={pages}
+                                setCurrentActive={setCurrentActive}
+                            />
+                        </div>
+                </Fragment> :
                     <Fragment>
                     <p className="DetailedCharacter__navText">
                         <NavLink
@@ -127,8 +153,8 @@ const DetailedCharacter = () => {
                             </h1>
 
                             <div className="DetailedCharacter__tagList">
-                                <Tag text={status}></Tag>
-                                <Tag text={gender}></Tag>
+                                <Tag text={status} />
+                                <Tag text={gender} />
                             </div>
 
                             <div className="DetailedCharacter__mainInfo">
@@ -139,7 +165,7 @@ const DetailedCharacter = () => {
                                     />
                                     <LabelValue
                                         label="Origin"
-                                        values={[origin.name]}
+                                        values={[origin?.name]}
                                     />
                                     <LabelValue
                                         label="Birthday"
@@ -147,7 +173,7 @@ const DetailedCharacter = () => {
                                     />
                                     <LabelValue
                                         label="Last Known Location"
-                                        values={[location.name]}
+                                        values={[location?.name]}
                                     />
                                     <LabelValue
                                         label="First seen in"
@@ -168,7 +194,7 @@ const DetailedCharacter = () => {
             </div>
         </div>
     ) : (
-        <div className="DetailedCharacter"> Error 404: Not Found</div>
+        <IdErrorFallback subject="Character" id={id} />
     );
 };
 
