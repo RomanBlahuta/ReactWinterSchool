@@ -12,15 +12,12 @@ const Router = () => {
                 </Route>
 
                 <Route exact path="*">
-                    <div>
-                        <Header></Header>
                         <Switch>
                             <Route exact path="/character/:id">
                                 <DetailedCharacter></DetailedCharacter>
                             </Route>
                             <Redirect to="/" />
                         </Switch>
-                    </div>
                 </Route>
             </Switch>
         </BrowserRouter>

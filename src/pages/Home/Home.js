@@ -11,7 +11,6 @@ import { PAGE_DISPLAY_NUMBER } from '../../util/consts';
 
 function Home() {
     const [characters, setCharacters] = useState([]);
-    const [charactersUnfiltered, setCharactersUnfiltered] = useState([]);
 
     const [currentActive, setCurrentActive] = useState(1);
     const [pages, setPages] = useState([]);
@@ -59,24 +58,8 @@ function Home() {
     const loadCharacters = async (page, gender, status, name) => {
         const items = await getCharacters(page, gender, status, name);
         setCharacters(items?.results);
-        setCharactersUnfiltered(items?.results);
         setApiPagesTotal(items?.info?.pages);
         setPages([...Array(items?.info?.pages).keys()].map((x) => x + 1));
-    };
-
-    const filterCharacters = (characters) => {
-        let result = [...characters];
-        if (statusFilter !== 'All statuses') {
-            result = result.filter(
-                (character) => character.status === statusFilter
-            );
-        }
-        if (genderFilter !== 'All genders') {
-            result = result.filter(
-                (character) => character.gender === genderFilter
-            );
-        }
-        setCharacters(result);
     };
 
     const handleClickNext = () => {
@@ -109,7 +92,7 @@ function Home() {
                 </h1>
                 <DynamicQuote />
 
-                <Search className="main" />
+                <Search className="main" setName={setCharacterName} />
 
                 <div className="Home__selects">
                     <Select

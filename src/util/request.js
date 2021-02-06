@@ -7,7 +7,6 @@ export async function httpGet(theUrl) {
 
 export const getCharacters = async (page, gender, status, name) => {
     let requestUrl = `${SERVER_URL}/character?page=${page}`;
-
     if (gender !== 'All genders' && gender) {
         requestUrl += `&gender=${gender}`;
     }
@@ -17,8 +16,6 @@ export const getCharacters = async (page, gender, status, name) => {
     if (name) {
         requestUrl += `&name=${name}`;
     }
-
-    console.log(requestUrl);
     const response = await fetch(requestUrl);
     return response.json();
 };

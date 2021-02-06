@@ -3,10 +3,16 @@ import Tag from '../../components/Tag';
 import LabelValue from '../../components/LabelValue';
 import { NavLink, useParams } from 'react-router-dom';
 import { httpGet, getCharacter } from '../../util/request';
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect, Fragment } from 'react';
+import Header from "../../components/Header";
+import CardList from "../../components/CardList";
 
 const DetailedCharacter = () => {
     const { id } = useParams();
+
+    const [characters, setCharacters] = useState([]);
+    const [characterName, setCharacterName] = useState("");
+
     const [characterInfo, setCharacterInfo] = useState({
         name: 'Loading...',
         status: 'Loading...',
@@ -67,85 +73,98 @@ const DetailedCharacter = () => {
         setEpisodeNames(episodeObjects.map(extractEpisodeName));
     };
 
+    /*useEffect(() => {
+        loadCharacters(
+            currentActive,
+            genderFilter,
+            statusFilter,
+            characterName
+        ).then((r) => r);
+    }, [currentActive, statusFilter, genderFilter, characterName]);*/
+
     return characterInfo ? (
         <div>
+            <Header setName={setCharacterName}></Header>
             <div className="DetailedCharacter">
-                <p className="DetailedCharacter__navText">
-                    <NavLink
-                        exact
-                        to="/"
-                        className="DetailedCharacter__link"
-                        activeClassName="DetailedCharacter__activeLink"
-                    >
-                        Home
-                    </NavLink>
-                    <span className="DetailedCharacter__itemName">
-                        &nbsp;|&nbsp;
+                {characterName ? <CardList characters={characters ? characters : []} /> :
+                    <Fragment>
+                    <p className="DetailedCharacter__navText">
                         <NavLink
                             exact
-                            to={`/character/${id}`}
+                            to="/"
                             className="DetailedCharacter__link"
                             activeClassName="DetailedCharacter__activeLink"
                         >
-                            #{id} {name}
+                            Home
                         </NavLink>
-                    </span>
-                </p>
+                        <span className="DetailedCharacter__itemName">
+                            &nbsp;|&nbsp;
+                            <NavLink
+                                exact
+                                to={`/character/${id}`}
+                                className="DetailedCharacter__link"
+                                activeClassName="DetailedCharacter__activeLink"
+                            >
+                                #{id} {name}
+                            </NavLink>
+                        </span>
+                    </p>
 
-                <div className="break" />
+                    <div className="break" />
 
-                <div className="DetailedCharacter__container">
-                    <div className="DetailedCharacter__image">
-                        <img
-                            src={image}
-                            alt="Loading..."
-                            className="DetailedCharacter__itemImg"
-                        />
-                    </div>
-
-                    <div className="DetailedCharacter__description">
-                        <h1 className="DetailedCharacter__headName">
-                            #{id} {name}
-                        </h1>
-
-                        <div className="DetailedCharacter__tagList">
-                            <Tag text={status}></Tag>
-                            <Tag text={gender}></Tag>
+                    <div className="DetailedCharacter__container">
+                        <div className="DetailedCharacter__image">
+                            <img
+                                src={image}
+                                alt="Loading..."
+                                className="DetailedCharacter__itemImg"
+                            />
                         </div>
 
-                        <div className="DetailedCharacter__mainInfo">
-                            <div className="DetailedCharacter__col">
-                                <LabelValue
-                                    label="Species"
-                                    values={[species]}
-                                />
-                                <LabelValue
-                                    label="Origin"
-                                    values={[origin.name]}
-                                />
-                                <LabelValue
-                                    label="Birthday"
-                                    values={[created]}
-                                />
-                                <LabelValue
-                                    label="Last Known Location"
-                                    values={[location.name]}
-                                />
-                                <LabelValue
-                                    label="First seen in"
-                                    values={[episodeNames[0]]}
-                                />
+                        <div className="DetailedCharacter__description">
+                            <h1 className="DetailedCharacter__headName">
+                                #{id} {name}
+                            </h1>
+
+                            <div className="DetailedCharacter__tagList">
+                                <Tag text={status}></Tag>
+                                <Tag text={gender}></Tag>
                             </div>
 
-                            <div className="DetailedCharacter__col">
-                                <LabelValue
-                                    label="Episodes"
-                                    values={episodeNames}
-                                />
+                            <div className="DetailedCharacter__mainInfo">
+                                <div className="DetailedCharacter__col">
+                                    <LabelValue
+                                        label="Species"
+                                        values={[species]}
+                                    />
+                                    <LabelValue
+                                        label="Origin"
+                                        values={[origin.name]}
+                                    />
+                                    <LabelValue
+                                        label="Birthday"
+                                        values={[created]}
+                                    />
+                                    <LabelValue
+                                        label="Last Known Location"
+                                        values={[location.name]}
+                                    />
+                                    <LabelValue
+                                        label="First seen in"
+                                        values={[episodeNames[0]]}
+                                    />
+                                </div>
+
+                                <div className="DetailedCharacter__col">
+                                    <LabelValue
+                                        label="Episodes"
+                                        values={episodeNames}
+                                    />
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                </Fragment>}
             </div>
         </div>
     ) : (
