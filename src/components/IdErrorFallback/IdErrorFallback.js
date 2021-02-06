@@ -1,5 +1,5 @@
 import React from "react";
-import './IdError.scss';
+import './IdErrorFallback.scss';
 import Logo from "../../assets/rickmorty.svg";
 import { Link } from "react-router-dom";
 import RickIcon from "../../assets/RickIcon.png"
