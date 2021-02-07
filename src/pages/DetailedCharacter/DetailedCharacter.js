@@ -53,6 +53,11 @@ const DetailedCharacter = () => {
         loadCharacter(id).then((r) => r);
     }, []);
 
+    useEffect(() => {
+        loadCharacter(id).then((r) => r);
+        setCharacterName("");
+    }, [id]);
+
     const loadCharacter = async (charId) => {
         const item = await getCharacter(charId);
         setCharacterInfo(item);
