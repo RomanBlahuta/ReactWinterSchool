@@ -7,7 +7,7 @@ import Pagination from '../../components/Pagination';
 import { NavLink, useParams } from 'react-router-dom';
 import LabelValue from '../../components/LabelValue';
 import IdErrorFallback from '../../components/IdErrorFallback';
-import {getCharacters, getEpisode, httpGet} from '../../util/request';
+import { getCharacters, getEpisode, httpGet } from '../../util/request';
 
 const DetailedEpisode = () => {
     const { id } = useParams();
@@ -29,7 +29,9 @@ const DetailedEpisode = () => {
     });
 
     const [episodeCharacters, setEpisodeCharacters] = useState([]);
-    const [episodeCharacterNames, setEpisodeCharacterNames] = useState([]);
+    const [episodeCharacterNames, setEpisodeCharacterNames] = useState([
+        'Loading...',
+    ]);
 
     const { name, air_date, episode, characters, created, url, error } =
         episodeInfo || {};
@@ -41,7 +43,7 @@ const DetailedEpisode = () => {
         setPages([...Array(items?.info?.pages).keys()].map((x) => x + 1));
     };
 
-    const extractCharacterName = (char) =>  char.name;
+    const extractCharacterName = (char) => char.name;
 
     const loadEpisodeCharacters = async () => {
         const item = await getEpisode(id);
@@ -54,7 +56,7 @@ const DetailedEpisode = () => {
 
         setEpisodeCharacters(charObjects);
         setEpisodeCharacterNames(charObjects.map(extractCharacterName));
-    }
+    };
 
     const objectsToIds = (charObj) => charObj.id;
 
@@ -64,8 +66,8 @@ const DetailedEpisode = () => {
     };
 
     useEffect(() => {
-        loadEpisodeCharacters().then(r => r);
-    }, [])
+        loadEpisodeCharacters().then((r) => r);
+    }, []);
 
     useEffect(() => {
         loadEpisode(id).then((r) => r);
@@ -148,7 +150,10 @@ const DetailedEpisode = () => {
 
                                 <div className="DetailedEpisode__mainInfo">
                                     <div className="DetailedEpisode__col">
-                                        <LabelValue label="Air Date" values={[air_date]} />
+                                        <LabelValue
+                                            label="Air Date"
+                                            values={[air_date]}
+                                        />
                                     </div>
 
                                     <div className="DetailedEpisode__col">
@@ -156,7 +161,9 @@ const DetailedEpisode = () => {
                                             label="Characters"
                                             values={episodeCharacterNames}
                                             isLinkFor="character"
-                                            linkIDs={episodeCharacters.map(objectsToIds)}
+                                            linkIDs={episodeCharacters.map(
+                                                objectsToIds
+                                            )}
                                         />
                                     </div>
                                 </div>
