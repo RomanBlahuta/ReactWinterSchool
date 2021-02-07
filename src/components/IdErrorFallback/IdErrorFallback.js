@@ -4,6 +4,7 @@ import Logo from '../../assets/rickmorty.svg';
 import { Link } from 'react-router-dom';
 import RickIcon from '../../assets/RickIcon.png';
 import MortyIcon from '../../assets/MortyIcon.png';
+import { PropTypes } from 'prop-types';
 
 const IdErrorFallback = ({ subject, id }) => {
     return (
@@ -27,7 +28,7 @@ const IdErrorFallback = ({ subject, id }) => {
                     {' '}
                     {`${subject} #${id}: 404 Not Found`}
                 </h1>
-                <div className="break"></div>
+                <div className="break" />
                 <Link exact to="/" className="IdErrorFallback__goHome">
                     Go Back
                 </Link>
@@ -36,3 +37,8 @@ const IdErrorFallback = ({ subject, id }) => {
     );
 };
 export default IdErrorFallback;
+
+IdErrorFallback.propTypes = {
+    subject: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired
+}

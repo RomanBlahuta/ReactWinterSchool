@@ -9,16 +9,16 @@ const Router = () => {
         <BrowserRouter>
             <Switch>
                 <Route exact path="/">
-                    <Home></Home>
+                    <Home />
                 </Route>
 
                 <Route exact path="*">
                     <Switch>
                         <Route exact path="/character/:id">
-                            <DetailedCharacter></DetailedCharacter>
+                            <DetailedCharacter />
                         </Route>
                         <Route exact path="/episode/:id">
-                            <DetailedEpisode></DetailedEpisode>
+                            <DetailedEpisode />
                         </Route>
                         <Redirect to="/" />
                     </Switch>

@@ -5,6 +5,7 @@ import Male from '../../assets/male.svg';
 import Female from '../../assets/female.svg';
 import Unknown from '../../assets/unknown.svg';
 import Genderless from '../../assets/genderless.svg';
+import { PropTypes } from 'prop-types';
 
 const Tag = ({ text }) => {
     const tagIcons = {
@@ -24,3 +25,7 @@ const Tag = ({ text }) => {
 };
 
 export default Tag;
+
+Tag.propTypes = {
+    text: PropTypes.string.isRequired
+}

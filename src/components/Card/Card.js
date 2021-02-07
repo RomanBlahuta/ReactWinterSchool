@@ -24,7 +24,7 @@ const Card = ({
     const [firstSeen, setFirstSeen] = useState('Loading...');
 
     useEffect(() => {
-        loadFirstSeen();
+        loadFirstSeen().then(r => r);
     }, []);
 
     const loadFirstSeen = async () => {

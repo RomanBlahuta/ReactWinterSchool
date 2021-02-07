@@ -1,5 +1,6 @@
 import './LabelValue.scss';
 import { Link } from 'react-router-dom';
+import { PropTypes } from 'prop-types';
 
 const LabelValue = ({ label, values = [], linkIDs = [], isLinkFor = '' }) => {
     const renderValues = (value) => (
@@ -32,7 +33,7 @@ const LabelValue = ({ label, values = [], linkIDs = [], isLinkFor = '' }) => {
     return (
         <div className="LabelValue">
             <p className="LabelValue__label">{label}</p>
-            {!isLinkFor
+            {!isLinkFor || values[0] === "Loading..."
                 ? values.map(renderValues)
                 : formLinkArray(values, linkIDs).map(renderLinks)}
         </div>
@@ -40,3 +41,10 @@ const LabelValue = ({ label, values = [], linkIDs = [], isLinkFor = '' }) => {
 };
 
 export default LabelValue;
+
+LabelValue.propTypes = {
+    label: PropTypes.string.isRequired,
+    values: PropTypes.array.isRequired,
+    linkIDs: PropTypes.array,
+    isLinkFor: PropTypes.string
+}

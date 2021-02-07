@@ -1,6 +1,7 @@
 import './Select.scss';
 import Down from '../../assets/down.svg';
 import React, { useState } from 'react';
+import { PropTypes } from 'prop-types';
 
 const Select = ({ label, value, options, valueHandler }) => {
     const [active, setActive] = useState(false);
@@ -43,3 +44,10 @@ const Select = ({ label, value, options, valueHandler }) => {
 };
 
 export default Select;
+
+Select.propTypes = {
+    label: PropTypes.string.isRequired,
+    value: PropTypes.string.isRequired,
+    options: PropTypes.array.isRequired,
+    valueHandler: PropTypes.func.isRequired
+}

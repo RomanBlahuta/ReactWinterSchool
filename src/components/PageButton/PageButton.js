@@ -1,4 +1,5 @@
 import './PageButton.scss';
+import { PropTypes } from 'prop-types';
 
 const PageButton = ({ children, active, action, disabled }) => {
     return (
@@ -15,3 +16,10 @@ const PageButton = ({ children, active, action, disabled }) => {
 };
 
 export default PageButton;
+
+PageButton.propTypes = {
+    children: PropTypes.node.isRequired,
+    active: PropTypes.string.isRequired,
+    action: PropTypes.func.isRequired,
+    disabled: PropTypes.bool
+}

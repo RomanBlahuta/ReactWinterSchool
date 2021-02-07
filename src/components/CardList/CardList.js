@@ -1,9 +1,10 @@
 import './CardList.scss';
 import Card from '../Card';
+import { PropTypes } from 'prop-types';
 
 const CardList = ({ characters }) => {
     const renderCharacter = (character) => (
-        <Card key={character.id} {...character}></Card>
+        <Card key={character.id} {...character} />
     );
 
     return characters.length > 0 ? (
@@ -14,3 +15,7 @@ const CardList = ({ characters }) => {
 };
 
 export default CardList;
+
+CardList.propTypes = {
+    characters: PropTypes.array.isRequired
+}

@@ -1,6 +1,7 @@
 import './Search.scss';
 import SearchIcon from '../../assets/search.svg';
 import _ from 'lodash';
+import { PropTypes } from 'prop-types';
 
 const Search = ({ className, setName }) => {
     const changeName = (event) => {
@@ -17,9 +18,14 @@ const Search = ({ className, setName }) => {
                 placeholder="Search by name"
                 defaultValue=""
                 onChange={handleNameChange}
-            ></input>
+            />
         </div>
     );
 };
 
 export default Search;
+
+Search.propTypes = {
+    className: PropTypes.string.isRequired,
+    setName: PropTypes.func.isRequired
+}

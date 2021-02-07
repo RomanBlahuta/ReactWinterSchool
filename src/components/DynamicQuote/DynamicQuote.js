@@ -23,6 +23,7 @@ const DynamicQuote = () => {
 
     useEffect(() => {
         setInterval(chooseRandomQuote, 30000);
+        return () => clearInterval(chooseRandomQuote);
     }, []);
 
     return <div className="DynamicQuote">{quote}</div>;

@@ -4,6 +4,7 @@ import Right from '../../assets/right.svg';
 import PageButton from '../PageButton';
 import { PAGE_DISPLAY_NUMBER } from '../../util/consts';
 import { useState } from 'react';
+import { PropTypes } from 'prop-types';
 
 const Pagination = ({
     pages,
@@ -81,3 +82,10 @@ const Pagination = ({
 };
 
 export default Pagination;
+
+PageButton.propTypes = {
+    pages: PropTypes.array,
+    currentActive: PropTypes.number,
+    apiPagesTotal: PropTypes.number,
+    setCurrentActive: PropTypes.func
+}
