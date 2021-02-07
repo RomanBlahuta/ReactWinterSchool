@@ -2,7 +2,7 @@
     width: 300px;
     height: 562px;
     border-radius: 12px;
-    background-color: #2a2a42;
+    background-color: var(--secondary);
     margin: 16px;
 
     &__content {
@@ -11,7 +11,7 @@
     }
 
     &__name {
-        color: white;
+        color: var(--text-color);
         font-size: 24px;
 
         &:hover {

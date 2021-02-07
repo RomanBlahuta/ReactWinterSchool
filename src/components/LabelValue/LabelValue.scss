@@ -1,6 +1,6 @@
 .LabelValue {
     &__label {
-        color: #bfc1d3;
+        color: var(--label-color);
         opacity: 0.5;
         font-size: 13px;
         line-height: 15px;
@@ -9,17 +9,17 @@
     }
 
     &__value {
-        margin-top: 0px;
+        margin-top: 0;
         font-size: 16px;
         line-height: 19px;
-        color: white;
+        color: var(--text-color);
     }
 
     &__link {
-        margin-top: 0px;
+        margin-top: 0;
         font-size: 16px;
         line-height: 19px;
-        color: white;
+        color: var(--text-color);
         text-decoration: none;
         display: block;
         margin-bottom: 10px;

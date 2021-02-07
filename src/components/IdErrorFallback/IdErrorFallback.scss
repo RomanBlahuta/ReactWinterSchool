@@ -2,7 +2,7 @@
     &__header {
         display: flex;
         justify-content: center;
-        background-color: white;
+        background-color: var(--header-color);
         padding: 15px 0;
         width: 100%;
     }
@@ -14,7 +14,7 @@
     &__errorText {
         margin-top: 30px;
         text-align: center;
-        color: white;
+        color: var(--text-color);
     }
 
     &__content {
@@ -39,7 +39,7 @@
         font-weight: bold;
 
         &:hover {
-            color: white;
+            color: var(--text-color);
         }
     }
 }

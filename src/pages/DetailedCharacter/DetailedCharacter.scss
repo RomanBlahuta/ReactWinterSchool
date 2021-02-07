@@ -11,7 +11,7 @@
     &__container {
         padding: 40px 40px 60px 40px;
         width: 1200px;
-        background: #2a2a42;
+        background: var(--secondary);
         border-radius: 12px;
         margin-top: 30px;
         display: flex;
@@ -33,12 +33,13 @@
 
     &__image {
         margin-right: 40px;
+        margin-top: 10px;
     }
 
     &__headName {
         font-size: 56px;
         font-weight: bold;
-        color: white;
+        color: var(--text-color);
     }
 
     &__tagList {

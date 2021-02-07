@@ -1,5 +1,16 @@
 :root {
     --cta: #3f8bfd;
+    --episode-img-bg: #9598b8;
+    --primary: #0a0a28;
+    --secondary: #2a2a42;
+    --text-color: white;
+    --header-color: white;
+    --label-color: #bfc1d3;
+    --shadow-color: #e4e8ee;
+    --select-bg: #f3f7fd;
+    --select-bg-hover: #cadaf6;
+    --select-option-bg-hover: #c5c5e0;
+    --tag-bg: #6c6c84;
 }
 
 body {
@@ -7,7 +18,7 @@ body {
     font-family: 'Roboto', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background-color: #0a0a28;
+    background-color: var(--primary);
 }
 
 code {

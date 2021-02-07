@@ -7,19 +7,19 @@
     line-height: 32px;
 
     &__inactive {
-        background: #2a2a42;
-        color: white;
+        background: var(--secondary);
+        color: var(--text-color);
 
         &:hover {
-            background: white;
-            color: #2a2a42;
+            background: var(--text-color);
+            color: var(--secondary);
             cursor: pointer;
         }
     }
 
     &__active {
-        color: #2a2a42;
-        background: white;
+        color: var(--secondary);
+        background: var(--text-color);
 
         &:hover {
             cursor: pointer;
@@ -29,10 +29,7 @@
     &__disabled {
         cursor: default;
         background-color: transparent;
-        border: 1px solid white;
+        border: 1px solid var(--text-color);
         opacity: 0.6;
-
-        &:hover {
-        }
     }
 }
