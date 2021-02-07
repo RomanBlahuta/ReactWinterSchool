@@ -1,23 +1,35 @@
 .PageButton {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    margin: 0 8px;
+    font-weight: bold;
+    line-height: 32px;
+
     &__inactive {
-        width: 32px;
-        height: 32px;
-        background: #2a2a42;
-        border-radius: 8px;
-        color: white;
-        margin: 0 8px;
-        font-weight: bold;
-        line-height: 32px;
+        background: var(--secondary);
+        color: var(--text-color);
+
+        &:hover {
+            background: var(--text-color);
+            color: var(--secondary);
+            cursor: pointer;
+        }
     }
 
     &__active {
-        width: 32px;
-        height: 32px;
-        color: #2a2a42;
-        border-radius: 8px;
-        background: white;
-        margin: 0 8px;
-        font-weight: bold;
-        line-height: 32px;
+        color: var(--secondary);
+        background: var(--text-color);
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
+    &__disabled {
+        cursor: default;
+        background-color: transparent;
+        border: 1px solid var(--text-color);
+        opacity: 0.6;
     }
 }

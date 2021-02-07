@@ -4,4 +4,14 @@
     flex-wrap: wrap;
     margin: auto;
     width: 1500px;
+
+    &__oops {
+        color: var(--text-color);
+        font-weight: bold;
+        font-size: 40px;
+        border: 1px solid var(--text-color);
+        display: inline;
+        border-radius: 12px;
+        padding: 40px 45px;
+    }
 }

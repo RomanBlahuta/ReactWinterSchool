@@ -1,33 +1,27 @@
-import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
-import Home from "./pages/Home";
-import DetailedUser from "./pages/DetailedUser";
-import Header from "./components/Header";
-
-import characters from "./data/stubCharacters.json";
+import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
+import Home from './pages/Home';
+import DetailedCharacter from './pages/DetailedCharacter';
+import DetailedEpisode from './pages/DetailedEpisode/DetailedEpisode';
+import React from 'react';
 
 const Router = () => {
-    const characterList = characters.results;
-
-    const getCharacterById = (id) => characterList.find((character) => character.id === id);
-
     return (
         <BrowserRouter>
             <Switch>
                 <Route exact path="/">
-                    <Home characters={characterList}></Home>
+                    <Home />
                 </Route>
 
                 <Route exact path="*">
-                    {/*<h1> Error 404: Not Found </h1>*/}
-                    <div>
-                        <Header></Header>
-                        <Switch>
-                            <Route exact path="/character/:id">
-                                <DetailedUser selectCharacter={getCharacterById}></DetailedUser>
-                            </Route>
-                            <Redirect to="/" />
-                        </Switch>
-                    </div>
+                    <Switch>
+                        <Route exact path="/character/:id">
+                            <DetailedCharacter />
+                        </Route>
+                        <Route exact path="/episode/:id">
+                            <DetailedEpisode />
+                        </Route>
+                        <Redirect to="/" />
+                    </Switch>
                 </Route>
             </Switch>
         </BrowserRouter>

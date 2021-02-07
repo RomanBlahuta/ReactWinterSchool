@@ -1,1 +1,1 @@
-export { default } from "./PageButton";
+export { default } from './PageButton';

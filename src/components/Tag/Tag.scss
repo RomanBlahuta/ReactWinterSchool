@@ -1,11 +1,12 @@
 .Tag {
     height: 24px;
-    background-color: #6c6c84;
+    background-color: var(--tag-bg);
     border-radius: 12px;
     padding: 0 20px 0 16px;
-    color: white;
+    color: var(--text-color);
     font-size: 13px;
     line-height: 24px;
     font-weight: bold;
     margin-right: 8px;
+    cursor: default;
 }

@@ -1,27 +1,25 @@
-import "./PageButton.scss";
-import Right from "../../assets/right.svg";
-import Left from "../../assets/left.svg";
+import './PageButton.scss';
+import { PropTypes } from 'prop-types';
 
-const PageButton = ({ arrow, number, active }) => {
-    if (arrow === "left") {
-        return (
-            <div className={`PageButton__${active}`}>
-                <img src={Left}></img>
-            </div>
-        );
-    } else if (arrow === "right") {
-        return (
-            <div className={`PageButton__${active}`}>
-                <img src={Right}></img>
-            </div>
-        );
-    } else {
-        return (
-            <div className={`PageButton__${active}`}>
-                <span>{number}</span>
-            </div>
-        );
-    }
+const PageButton = ({ children, active, action, disabled }) => {
+    return (
+        <div
+            className={
+                'PageButton ' +
+                (disabled ? 'PageButton__disabled' : `PageButton__${active}`)
+            }
+            onClick={action}
+        >
+            {children}
+        </div>
+    );
 };
 
 export default PageButton;
+
+PageButton.propTypes = {
+    children: PropTypes.node.isRequired,
+    active: PropTypes.string.isRequired,
+    action: PropTypes.func.isRequired,
+    disabled: PropTypes.bool,
+};

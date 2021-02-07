@@ -1,20 +1,36 @@
-import "./Card.scss";
-import Photo from "../../assets/image 3.svg";
-import Tag from "../Tag";
-import LabelValue from "../LabelValue";
-import { Link } from "react-router-dom";
-import { PropTypes } from "prop-types";
-import { httpGet } from "../../util/request";
+import './Card.scss';
+import Tag from '../Tag';
+import LabelValue from '../LabelValue';
+import { Link } from 'react-router-dom';
+import { PropTypes } from 'prop-types';
+import { httpGet } from '../../util/request';
+import { useState, useEffect } from 'react';
+import { MAX_CARD_NAME_LEN } from '../../util/consts';
 
-const Card = ({ id, name, status, species, type, gender, origin, location, image, episode, url, created }) => {
-    //console.log(image);
+const Card = ({
+    id,
+    name,
+    status,
+    species,
+    type,
+    gender,
+    origin,
+    location,
+    image,
+    episode,
+    url,
+    created,
+}) => {
+    const [firstSeen, setFirstSeen] = useState('Loading...');
 
-    let episodeData = [];
-    for (let ep of episode) {
-        let epObj = JSON.parse(httpGet(ep));
-        //console.log(epObj);
-        episodeData.push(epObj);
-    }
+    useEffect(() => {
+        loadFirstSeen().then((r) => r);
+    }, []);
+
+    const loadFirstSeen = async () => {
+        let epObj = await httpGet(episode[0]);
+        setFirstSeen(`${epObj.episode}: ${epObj.name}`);
+    };
 
     return (
         <div className="Card">
@@ -24,9 +40,13 @@ const Card = ({ id, name, status, species, type, gender, origin, location, image
                 </Link>
             </div>
             <div className="Card__content">
-                <Link to={`/character/${id}`}>
-                    {" "}
-                    <h1 className="Card__name">{name}</h1>{" "}
+                <Link className="Card__link" to={`/character/${id}`}>
+                    {' '}
+                    <h1 className="Card__name">
+                        {name.length > MAX_CARD_NAME_LEN
+                            ? name.slice(0, MAX_CARD_NAME_LEN) + '...'
+                            : name}
+                    </h1>{' '}
                 </Link>
 
                 <div className="Card__tags">
@@ -34,11 +54,11 @@ const Card = ({ id, name, status, species, type, gender, origin, location, image
                     <Tag text={gender} />
                 </div>
 
-                <LabelValue label="Last known location" value={location.name}></LabelValue>
                 <LabelValue
-                    label="First appeared in"
-                    value={episodeData[0].episode + ": " + episodeData[0].name}
-                ></LabelValue>
+                    label="Last known location"
+                    values={[location.name]}
+                />
+                <LabelValue label="First appeared in" values={[firstSeen]} />
             </div>
         </div>
     );
@@ -52,7 +72,7 @@ Card.propTypes = {
     status: PropTypes.string.isRequired,
     species: PropTypes.string.isRequired,
     type: PropTypes.string.isRequired,
-    gender: PropTypes.oneOf(["Male", "Female", "unknown", "Genderless"]),
+    gender: PropTypes.oneOf(['Male', 'Female', 'unknown', 'Genderless']),
     origin: PropTypes.shape({
         url: PropTypes.string.isRequired,
         name: PropTypes.string.isRequired,
