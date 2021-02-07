@@ -1,7 +1,7 @@
 import './LabelValue.scss';
 import { Link } from 'react-router-dom';
 
-const LabelValue = ({ label, values, linkIDs = [], isLinkFor = '' }) => {
+const LabelValue = ({ label, values = [], linkIDs = [], isLinkFor = '' }) => {
     const renderValues = (value) => (
         <p key={`id-${label}-${value}`} className="LabelValue__value">
             {value}

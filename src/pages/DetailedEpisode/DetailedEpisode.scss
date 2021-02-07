@@ -23,7 +23,7 @@
     }
 
     &__container {
-        padding: 40px;
+        padding: 40px 40px 90px 40px;
         width: 1200px;
         background: #2a2a42;
         border-radius: 12px;
@@ -95,6 +95,10 @@
     &__itemImg {
         margin-top: 20px;
         border-radius: 12px;
+    }
+
+    &__description {
+        width: 100%;
     }
 }
 
