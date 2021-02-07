@@ -49,5 +49,5 @@ Select.propTypes = {
     label: PropTypes.string.isRequired,
     value: PropTypes.string.isRequired,
     options: PropTypes.array.isRequired,
-    valueHandler: PropTypes.func.isRequired
-}
+    valueHandler: PropTypes.func.isRequired,
+};

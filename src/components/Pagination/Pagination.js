@@ -87,5 +87,5 @@ PageButton.propTypes = {
     pages: PropTypes.array,
     currentActive: PropTypes.number,
     apiPagesTotal: PropTypes.number,
-    setCurrentActive: PropTypes.func
-}
+    setCurrentActive: PropTypes.func,
+};

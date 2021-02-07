@@ -21,5 +21,5 @@ PageButton.propTypes = {
     children: PropTypes.node.isRequired,
     active: PropTypes.string.isRequired,
     action: PropTypes.func.isRequired,
-    disabled: PropTypes.bool
-}
+    disabled: PropTypes.bool,
+};

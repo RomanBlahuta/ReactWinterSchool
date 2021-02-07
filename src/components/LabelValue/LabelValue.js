@@ -33,7 +33,7 @@ const LabelValue = ({ label, values = [], linkIDs = [], isLinkFor = '' }) => {
     return (
         <div className="LabelValue">
             <p className="LabelValue__label">{label}</p>
-            {!isLinkFor || values[0] === "Loading..."
+            {!isLinkFor || values[0] === 'Loading...'
                 ? values.map(renderValues)
                 : formLinkArray(values, linkIDs).map(renderLinks)}
         </div>
@@ -46,5 +46,5 @@ LabelValue.propTypes = {
     label: PropTypes.string.isRequired,
     values: PropTypes.array.isRequired,
     linkIDs: PropTypes.array,
-    isLinkFor: PropTypes.string
-}
+    isLinkFor: PropTypes.string,
+};

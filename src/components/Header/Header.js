@@ -18,5 +18,5 @@ const Header = ({ setName }) => {
 export default Header;
 
 Header.propTypes = {
-    setName: PropTypes.func.isRequired
-}
+    setName: PropTypes.func.isRequired,
+};

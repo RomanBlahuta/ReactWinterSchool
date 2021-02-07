@@ -40,5 +40,5 @@ export default IdErrorFallback;
 
 IdErrorFallback.propTypes = {
     subject: PropTypes.string.isRequired,
-    id: PropTypes.string.isRequired
-}
+    id: PropTypes.string.isRequired,
+};

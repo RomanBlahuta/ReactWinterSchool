@@ -27,5 +27,5 @@ export default Search;
 
 Search.propTypes = {
     className: PropTypes.string.isRequired,
-    setName: PropTypes.func.isRequired
-}
+    setName: PropTypes.func.isRequired,
+};
