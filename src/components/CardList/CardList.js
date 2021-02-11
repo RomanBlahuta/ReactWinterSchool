@@ -2,6 +2,8 @@ import './CardList.scss';
 import Card from '../Card';
 import { PropTypes } from 'prop-types';
 
+// TODO: reorder imports
+
 const CardList = ({ characters }) => {
     const renderCharacter = (character) => (
         <Card key={character.id} {...character} />

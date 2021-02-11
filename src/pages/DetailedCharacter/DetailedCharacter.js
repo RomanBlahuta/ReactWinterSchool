@@ -19,6 +19,8 @@ const DetailedCharacter = () => {
     const [pages, setPages] = useState([]);
     const [apiPagesTotal, setApiPagesTotal] = useState(0);
 
+    // TODO: move loading into some variable (or consts.js)
+    // Think of better ways :) What if you had 100 fields?
     const [characterInfo, setCharacterInfo] = useState({
         name: 'Loading...',
         status: 'Loading...',
@@ -55,7 +57,7 @@ const DetailedCharacter = () => {
 
     useEffect(() => {
         loadCharacter(id).then((r) => r);
-        setCharacterName("");
+        setCharacterName('');
     }, [id]);
 
     const loadCharacter = async (charId) => {
@@ -74,6 +76,8 @@ const DetailedCharacter = () => {
         const item = await getCharacter(id);
 
         let episodeObjects = [];
+        // TODO: better to use map and return new array, instead of modifying existing one
+        // TODO: ep -> change to normal self descpriting name
         for (const ep of item.episode ? item.episode : []) {
             const episodeData = await httpGet(ep);
             episodeObjects.push(episodeData);
@@ -95,10 +99,10 @@ const DetailedCharacter = () => {
     useEffect(() => {
         loadCharacters(
             currentActive,
-            'All genders',
-            'All statuses',
+            'All genders', // TODO:move to const
+            'All statuses', // TODO:move to const
             characterName
-        ).then((r) => r);
+        ).then((r) => r); // TODO: this then is unneeded
     }, [currentActive, characterName]);
 
     useEffect(() => {
@@ -110,6 +114,7 @@ const DetailedCharacter = () => {
             <Header setName={setCharacterName} />
             <div className="DetailedCharacter">
                 {characterName ? (
+                    // TODO: use <></> - it's a new fragment syntax
                     <Fragment>
                         <CardList characters={characters ? characters : []} />
                         <div className="DetailedCharacter__paginationContainer">
@@ -155,7 +160,7 @@ const DetailedCharacter = () => {
                             <div className="DetailedCharacter__image">
                                 <img
                                     src={image}
-                                    alt="Loading..."
+                                    alt="Loading..." // TODO:move to const
                                     className="DetailedCharacter__itemImg"
                                 />
                             </div>
@@ -205,7 +210,7 @@ const DetailedCharacter = () => {
                                 </div>
                             </div>
                         </div>
-                    </Fragment>
+                    </Fragment> // TODO: use <></> - it's a new fragment syntax
                 )}
             </div>
         </div>

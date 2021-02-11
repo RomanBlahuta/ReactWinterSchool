@@ -6,6 +6,7 @@ import RickIcon from '../../assets/RickIcon.png';
 import MortyIcon from '../../assets/MortyIcon.png';
 import { PropTypes } from 'prop-types';
 
+// TODO: as an idea, you could think about more clear component name. But the view looks cool :)
 const IdErrorFallback = ({ subject, id }) => {
     return (
         <div className="IdErrorFallback">

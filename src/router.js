@@ -2,7 +2,7 @@ import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import Home from './pages/Home';
 import DetailedCharacter from './pages/DetailedCharacter';
 import DetailedEpisode from './pages/DetailedEpisode/DetailedEpisode';
-import React from 'react';
+import React from 'react'; // TODO: since react v 17 this import is unneeded. Read it in the docs
 
 const Router = () => {
     return (

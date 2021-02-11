@@ -23,6 +23,7 @@ const LabelValue = ({ label, values = [], linkIDs = [], isLinkFor = '' }) => {
     const formLinkArray = (values, linkIDs) => {
         let result = [];
 
+        // TODO: better use map instead of for
         for (let i = 0; i < values.length; i++) {
             result.push({ value: values[i], id: linkIDs[i] });
         }

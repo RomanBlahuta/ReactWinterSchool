@@ -9,6 +9,8 @@ import LabelValue from '../../components/LabelValue';
 import IdErrorFallback from '../../components/IdErrorFallback';
 import { getCharacters, getEpisode, httpGet } from '../../util/request';
 
+// TODO: import order
+
 const DetailedEpisode = () => {
     const { id } = useParams();
 
@@ -19,6 +21,7 @@ const DetailedEpisode = () => {
     const [pages, setPages] = useState([]);
     const [apiPagesTotal, setApiPagesTotal] = useState(0);
 
+    // TODO: move Loading... to consts.js
     const [episodeInfo, setEpisodeInfo] = useState({
         name: 'Loading...',
         air_date: 'Loading...',
@@ -30,10 +33,10 @@ const DetailedEpisode = () => {
 
     const [episodeCharacters, setEpisodeCharacters] = useState([]);
     const [episodeCharacterNames, setEpisodeCharacterNames] = useState([
-        'Loading...',
+        'Loading...', // TODO: move Loading... to consts.js
     ]);
 
-    const { name, air_date, episode, characters, created, url, error } =
+    const { name, air_date, episode, characters, created, url, error } = // TODO: remove unused vars
         episodeInfo || {};
 
     const loadCharacters = async (page, gender, status, name) => {
@@ -43,7 +46,8 @@ const DetailedEpisode = () => {
         setPages([...Array(items?.info?.pages).keys()].map((x) => x + 1));
     };
 
-    const extractCharacterName = (char) => char.name;
+    const extractCharacterName = (char) => char.name; // TODO: you can use object desctructuring here
+    // i.e. const extractCharacterName = ({name}) => name;
 
     const loadEpisodeCharacters = async () => {
         const item = await getEpisode(id);
@@ -58,7 +62,7 @@ const DetailedEpisode = () => {
         setEpisodeCharacterNames(charObjects.map(extractCharacterName));
     };
 
-    const objectsToIds = (charObj) => charObj.id;
+    const objectsToIds = (charObj) => charObj.id; // TODO: you can use object desctructuring here
 
     const loadEpisode = async (epId) => {
         const item = await getEpisode(epId);
@@ -66,20 +70,20 @@ const DetailedEpisode = () => {
     };
 
     useEffect(() => {
-        loadEpisodeCharacters().then((r) => r);
+        loadEpisodeCharacters().then((r) => r); // TODO: then is unneeded here, you don't change anything
     }, []);
 
     useEffect(() => {
-        loadEpisode(id).then((r) => r);
+        loadEpisode(id).then((r) => r); // TODO: then is unneeded here, you don't change anything
     }, []);
 
     useEffect(() => {
         loadCharacters(
             currentActive,
-            'All genders',
-            'All statuses',
+            'All genders', // TODO: const
+            'All statuses', // TODO: const
             characterName
-        ).then((r) => r);
+        ).then((r) => r); // TODO: then is unneeded here, you don't change anything
     }, [currentActive, characterName]);
 
     useEffect(() => {
@@ -91,6 +95,7 @@ const DetailedEpisode = () => {
             <Header setName={setCharacterName} />
             <div className="DetailedEpisode">
                 {characterName ? (
+                    // TODO: use new Fragment syntax (<>)
                     <Fragment>
                         <CardList
                             characters={

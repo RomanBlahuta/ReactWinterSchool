@@ -8,6 +8,7 @@ import Genderless from '../../assets/genderless.svg';
 import { PropTypes } from 'prop-types';
 
 const Tag = ({ text }) => {
+    // TODO: move to consts
     const tagIcons = {
         Alive: Alive,
         Dead: Dead,
