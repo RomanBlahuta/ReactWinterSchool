@@ -1,5 +1,12 @@
 # Rick & Morty Search Engine
 
+## Common TODOs
+1. Clean up unneeded variables from code
+2. Fix up date formatting (you can use `date-fns`, `luxon` or similar, but please, not `moment` -- it's large and not supported anymore :) )
+3. Why is additional `eslint` config missing? Try to solve some common problems in the project by adding eslint rules: rule for correct import order, rule that disallows leaving unused vars in code etc. Eslint will do the job for you :) (with --fix flag it will auto fix some common rules)
+4. Include `eslint` script intu pre-commit hook, to disallow committing un cleaned code.
+5. Your pre-commit hook currently works a bit improperly, so please fix it: it prettifies the code, but it does not add the prettified code to the commit. Test it before pushing.
+
 ## Description
 
 This site is a UI wrapper around the [Rick and Morty API](https://rickandmortyapi.com/).

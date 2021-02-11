@@ -7,6 +7,8 @@ const Select = ({ label, value, options, valueHandler }) => {
     const [active, setActive] = useState(false);
     const setOption = (event) => valueHandler(event.target.textContent);
     const handleOptionClick = (event) => {
+        // TODO: it's better to pass event.target.textContent here
+        // maybe you won't always have event as an argument
         setOption(event);
         setActive(false);
     };

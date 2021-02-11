@@ -3,6 +3,9 @@ import { useState, useEffect } from 'react';
 import _ from 'lodash';
 
 const DynamicQuote = () => {
+    // TODO: this is better to keep in consts.js or outside of the component
+    // (because it does not depend on any props).
+    // Otherwise it will be recreated on each component change
     const quotes = [
         'Welcome To The Club, Pal',
         'Wubba Lubba Dub Dub!',

@@ -7,6 +7,9 @@ import { httpGet } from '../../util/request';
 import { useState, useEffect } from 'react';
 import { MAX_CARD_NAME_LEN } from '../../util/consts';
 
+// TODO: remove unnecessary props. Don't leave rubbish in the code.
+// You could use some eslint rule to prevent that :)
+
 const Card = ({
     id,
     name,
@@ -42,6 +45,9 @@ const Card = ({
             <div className="Card__content">
                 <Link className="Card__link" to={`/character/${id}`}>
                     {' '}
+                    {/* // TODO: it's better to do this with css */}
+                    {/* Because, what if you'll want to change the font size? Or it will be dynamic... Will you recalculate the number of chars then? */}
+                    {/* read about it here https://css-tricks.com/snippets/css/truncate-string-with-ellipsis/ */}
                     <h1 className="Card__name">
                         {name.length > MAX_CARD_NAME_LEN
                             ? name.slice(0, MAX_CARD_NAME_LEN) + '...'
