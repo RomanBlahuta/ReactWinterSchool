@@ -5,26 +5,13 @@ import { Link } from 'react-router-dom';
 import { PropTypes } from 'prop-types';
 import { httpGet } from '../../util/request';
 import { useState, useEffect } from 'react';
-import { MAX_CARD_NAME_LEN } from '../../util/consts';
+import { LOADER, MAX_CARD_NAME_LEN } from '../../util/consts';
 
-const Card = ({
-    id,
-    name,
-    status,
-    species,
-    type,
-    gender,
-    origin,
-    location,
-    image,
-    episode,
-    url,
-    created,
-}) => {
-    const [firstSeen, setFirstSeen] = useState('Loading...');
+const Card = ({ id, name, status, gender, location, image, episode }) => {
+    const [firstSeen, setFirstSeen] = useState(LOADER);
 
     useEffect(() => {
-        loadFirstSeen().then((r) => r);
+        loadFirstSeen();
     }, []);
 
     const loadFirstSeen = async () => {
@@ -70,19 +57,11 @@ Card.propTypes = {
     id: PropTypes.number.isRequired,
     name: PropTypes.string.isRequired,
     status: PropTypes.string.isRequired,
-    species: PropTypes.string.isRequired,
-    type: PropTypes.string.isRequired,
     gender: PropTypes.oneOf(['Male', 'Female', 'unknown', 'Genderless']),
-    origin: PropTypes.shape({
-        url: PropTypes.string.isRequired,
-        name: PropTypes.string.isRequired,
-    }),
     location: PropTypes.shape({
         url: PropTypes.string.isRequired,
         name: PropTypes.string.isRequired,
     }),
     image: PropTypes.string.isRequired,
     episode: PropTypes.array.isRequired,
-    url: PropTypes.string.isRequired,
-    created: PropTypes.string.isRequired,
 };

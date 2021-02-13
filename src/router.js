@@ -2,7 +2,6 @@ import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import Home from './pages/Home';
 import DetailedCharacter from './pages/DetailedCharacter';
 import DetailedEpisode from './pages/DetailedEpisode/DetailedEpisode';
-import React from 'react';
 
 const Router = () => {
     return (

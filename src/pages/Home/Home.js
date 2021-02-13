@@ -1,12 +1,12 @@
-import './Home.scss';
-import { ReactComponent as Logo } from '../../assets/rickmorty.svg';
 import Select from '../../components/Select';
 import Search from '../../components/Search';
 import CardList from '../../components/CardList';
-import React, { useState, useEffect } from 'react';
-import { getCharacters } from '../../util/request';
 import Pagination from '../../components/Pagination';
 import DynamicQuote from '../../components/DynamicQuote';
+import { useState, useEffect } from 'react';
+import { getCharacters } from '../../util/request';
+import './Home.scss';
+import { ReactComponent as Logo } from '../../assets/rickmorty.svg';
 
 function Home() {
     const [characters, setCharacters] = useState([]);
@@ -28,7 +28,7 @@ function Home() {
             genderFilter,
             statusFilter,
             characterName
-        ).then((r) => r);
+        );
     }, []);
 
     // Loads corresponding characters if filters or the current page have changed
@@ -38,7 +38,7 @@ function Home() {
             genderFilter,
             statusFilter,
             characterName
-        ).then((r) => r);
+        );
     }, [currentActive, statusFilter, genderFilter, characterName]);
 
     // Sets the current page to be the first one if the character list was filtered

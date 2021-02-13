@@ -1,4 +1,4 @@
-import { SERVER_URL } from './consts';
+import { DEFAULT_GENDER, DEFAULT_STATUS, SERVER_URL } from './consts';
 
 export async function httpGet(theUrl) {
     const response = await fetch(theUrl);
@@ -7,10 +7,10 @@ export async function httpGet(theUrl) {
 
 export const getCharacters = async (page, gender, status, name) => {
     let requestUrl = `${SERVER_URL}/character?page=${page}`;
-    if (gender !== 'All genders' && gender) {
+    if (gender !== DEFAULT_GENDER && gender) {
         requestUrl += `&gender=${gender}`;
     }
-    if (status !== 'All statuses' && status) {
+    if (status !== DEFAULT_STATUS && status) {
         requestUrl += `&status=${status}`;
     }
     if (name) {

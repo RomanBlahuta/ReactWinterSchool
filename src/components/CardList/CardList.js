@@ -1,6 +1,6 @@
-import './CardList.scss';
 import Card from '../Card';
 import { PropTypes } from 'prop-types';
+import './CardList.scss';
 
 const CardList = ({ characters }) => {
     const renderCharacter = (character) => (

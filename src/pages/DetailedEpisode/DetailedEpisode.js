@@ -1,13 +1,13 @@
-import './DetailedEpisode.scss';
 import Header from '../../components/Header';
-import React, { Fragment } from 'react';
-import { useState, useEffect } from 'react';
 import CardList from '../../components/CardList';
 import Pagination from '../../components/Pagination';
-import { NavLink, useParams } from 'react-router-dom';
 import LabelValue from '../../components/LabelValue';
 import IdErrorFallback from '../../components/IdErrorFallback';
 import { getCharacters, getEpisode, httpGet } from '../../util/request';
+import { DEFAULT_GENDER, DEFAULT_STATUS, LOADER } from '../../util/consts';
+import { useState, useEffect } from 'react';
+import { NavLink, useParams } from 'react-router-dom';
+import './DetailedEpisode.scss';
 
 const DetailedEpisode = () => {
     const { id } = useParams();
@@ -20,21 +20,20 @@ const DetailedEpisode = () => {
     const [apiPagesTotal, setApiPagesTotal] = useState(0);
 
     const [episodeInfo, setEpisodeInfo] = useState({
-        name: 'Loading...',
-        air_date: 'Loading...',
-        episode: 'Loading...',
-        characters: ['Loading...'],
-        url: 'Loading...',
-        created: 'Loading...',
+        name: LOADER,
+        air_date: LOADER,
+        episode: LOADER,
+        characters: [LOADER],
+        url: LOADER,
+        created: LOADER,
     });
 
     const [episodeCharacters, setEpisodeCharacters] = useState([]);
     const [episodeCharacterNames, setEpisodeCharacterNames] = useState([
-        'Loading...',
+        LOADER,
     ]);
 
-    const { name, air_date, episode, characters, created, url, error } =
-        episodeInfo || {};
+    const { name, air_date, episode, error } = episodeInfo || {};
 
     const loadCharacters = async (page, gender, status, name) => {
         const items = await getCharacters(page, gender, status, name);
@@ -66,20 +65,20 @@ const DetailedEpisode = () => {
     };
 
     useEffect(() => {
-        loadEpisodeCharacters().then((r) => r);
+        loadEpisodeCharacters();
     }, []);
 
     useEffect(() => {
-        loadEpisode(id).then((r) => r);
+        loadEpisode(id);
     }, []);
 
     useEffect(() => {
         loadCharacters(
             currentActive,
-            'All genders',
-            'All statuses',
+            DEFAULT_GENDER,
+            DEFAULT_STATUS,
             characterName
-        ).then((r) => r);
+        );
     }, [currentActive, characterName]);
 
     useEffect(() => {
@@ -91,7 +90,7 @@ const DetailedEpisode = () => {
             <Header setName={setCharacterName} />
             <div className="DetailedEpisode">
                 {characterName ? (
-                    <Fragment>
+                    <>
                         <CardList
                             characters={
                                 characterResults ? characterResults : []
@@ -105,9 +104,9 @@ const DetailedEpisode = () => {
                                 setCurrentActive={setCurrentActive}
                             />
                         </div>
-                    </Fragment>
+                    </>
                 ) : (
-                    <Fragment>
+                    <>
                         <div className="DetailedEpisode__navTextContainer">
                             <p className="DetailedEpisode__navText">
                                 <NavLink
@@ -169,7 +168,7 @@ const DetailedEpisode = () => {
                                 </div>
                             </div>
                         </div>
-                    </Fragment>
+                    </>
                 )}
             </div>
         </div>

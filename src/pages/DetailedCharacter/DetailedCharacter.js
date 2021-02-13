@@ -1,13 +1,14 @@
-import './DetailedCharacter.scss';
 import Tag from '../../components/Tag';
 import LabelValue from '../../components/LabelValue';
-import { NavLink, useParams } from 'react-router-dom';
-import { httpGet, getCharacter, getCharacters } from '../../util/request';
-import React, { useState, useEffect, Fragment } from 'react';
 import Header from '../../components/Header';
 import CardList from '../../components/CardList';
 import Pagination from '../../components/Pagination';
 import IdErrorFallback from '../../components/IdErrorFallback';
+import { LOADER } from '../../util/consts';
+import { NavLink, useParams } from 'react-router-dom';
+import { httpGet, getCharacter, getCharacters } from '../../util/request';
+import { useState, useEffect } from 'react';
+import './DetailedCharacter.scss';
 
 const DetailedCharacter = () => {
     const { id } = useParams();
@@ -20,22 +21,22 @@ const DetailedCharacter = () => {
     const [apiPagesTotal, setApiPagesTotal] = useState(0);
 
     const [characterInfo, setCharacterInfo] = useState({
-        name: 'Loading...',
-        status: 'Loading...',
-        species: 'Loading...',
-        type: 'Loading...',
-        gender: 'Loading...',
-        origin: 'Loading...',
-        location: { name: 'Loading...', url: 'Loading...' },
+        name: LOADER,
+        status: LOADER,
+        species: LOADER,
+        type: LOADER,
+        gender: LOADER,
+        origin: LOADER,
+        location: { name: LOADER, url: LOADER },
         image: '',
         episode: [],
-        url: 'Loading...',
-        created: 'Loading...',
+        url: LOADER,
+        created: LOADER,
         error: undefined,
     });
 
-    const [episodes, setEpisodes] = useState(['Loading...']);
-    const [episodeNames, setEpisodeNames] = useState(['Loading...']);
+    const [episodes, setEpisodes] = useState([LOADER]);
+    const [episodeNames, setEpisodeNames] = useState([LOADER]);
 
     const {
         name,
@@ -50,12 +51,12 @@ const DetailedCharacter = () => {
     } = characterInfo || {};
 
     useEffect(() => {
-        loadCharacter(id).then((r) => r);
+        loadCharacter(id);
     }, []);
 
     useEffect(() => {
-        loadCharacter(id).then((r) => r);
-        setCharacterName("");
+        loadCharacter(id);
+        setCharacterName('');
     }, [id]);
 
     const loadCharacter = async (charId) => {
@@ -64,7 +65,7 @@ const DetailedCharacter = () => {
     };
 
     useEffect(() => {
-        loadEpisodes().then((r) => r);
+        loadEpisodes();
     }, []);
 
     const extractEpisodeName = (episodeObject) =>
@@ -74,8 +75,8 @@ const DetailedCharacter = () => {
         const item = await getCharacter(id);
 
         let episodeObjects = [];
-        for (const ep of item.episode ? item.episode : []) {
-            const episodeData = await httpGet(ep);
+        for (const episodeLink of item.episode ? item.episode : []) {
+            const episodeData = await httpGet(episodeLink);
             episodeObjects.push(episodeData);
         }
 
@@ -98,7 +99,7 @@ const DetailedCharacter = () => {
             'All genders',
             'All statuses',
             characterName
-        ).then((r) => r);
+        );
     }, [currentActive, characterName]);
 
     useEffect(() => {
@@ -110,7 +111,7 @@ const DetailedCharacter = () => {
             <Header setName={setCharacterName} />
             <div className="DetailedCharacter">
                 {characterName ? (
-                    <Fragment>
+                    <>
                         <CardList characters={characters ? characters : []} />
                         <div className="DetailedCharacter__paginationContainer">
                             <Pagination
@@ -120,9 +121,9 @@ const DetailedCharacter = () => {
                                 setCurrentActive={setCurrentActive}
                             />
                         </div>
-                    </Fragment>
+                    </>
                 ) : (
-                    <Fragment>
+                    <>
                         <div className="DetailedEpisode__navTextContainer">
                             <p className="DetailedCharacter__navText">
                                 <NavLink
@@ -155,7 +156,7 @@ const DetailedCharacter = () => {
                             <div className="DetailedCharacter__image">
                                 <img
                                     src={image}
-                                    alt="Loading..."
+                                    alt={LOADER}
                                     className="DetailedCharacter__itemImg"
                                 />
                             </div>
@@ -205,7 +206,7 @@ const DetailedCharacter = () => {
                                 </div>
                             </div>
                         </div>
-                    </Fragment>
+                    </>
                 )}
             </div>
         </div>
